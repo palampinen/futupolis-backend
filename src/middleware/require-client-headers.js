@@ -2,6 +2,11 @@ import * as userCore from '../core/user-core';
 
 function createRequireClientHeaders(opts) {
   return function requireClientHeaders(req, res, next) {
+    // Session based users don't need client headers
+    if (opts.allowSessionUsers && req.user) {
+      next();
+    }
+
     // Enforce uuid header in other methods than GET
     if (req.method !== 'GET' && !req.headers['x-user-uuid']) {
       const err = new Error('x-user-uuid header is required');

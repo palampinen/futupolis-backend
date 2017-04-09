@@ -1,16 +1,17 @@
 import express from 'express';
 import morgan from 'morgan';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import compression from 'compression';
 import createRouter from './routes';
 import errorResponder from './middleware/error-responder';
 import errorLogger from './middleware/error-logger';
-import requireClientHeaders from './middleware/require-client-headers';
 import requireApiToken from './middleware/require-api-token';
 import * as throttleCore from './core/throttle-core';
 import * as fb from './util/fb';
 import * as feedAggregator from './worker/feed-aggregator';
+import setupAuth from './setup-auth';
 
 function createApp() {
   const app = express();
@@ -50,12 +51,13 @@ function createApp() {
     });
   }
 
+  app.use(cookieParser());
+  setupAuth(app);
+
   if (process.env.DISABLE_AUTH !== 'true') {
     // Do not require tokens in development or test env
     app.use(requireApiToken());
   }
-
-  app.use(requireClientHeaders());
 
   app.use(bodyParser.json({
     limit: '20mb'

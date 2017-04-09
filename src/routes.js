@@ -1,4 +1,7 @@
 import express from 'express';
+import passport from 'passport';
+import requireClientHeaders from './middleware/require-client-headers';
+import requireAuthenticatedSession from './middleware/require-authenticated-session';
 import * as eventHttp from './http/event-http';
 import * as actionHttp from './http/action-http';
 import * as teamHttp from './http/team-http';
@@ -12,40 +15,135 @@ import * as citiesHttp from './http/cities-http';
 import * as radioHttp from './http/radio-http';
 import * as wappuMood from './http/wappu-mood-http';
 import * as imageHttp from './http/image-http';
+import * as adminHttp from './http/admin-http';
 
 
 function createRouter() {
   const router = express.Router();
 
-  router.get('/events', eventHttp.getEvents);
-  router.get('/events/:id', eventHttp.getEvent);
+  // Session based authentication
+  router.post(
+    '/login',
+    passport.authenticate('local'),
+    adminHttp.login
+  );
+  router.post(
+    '/logout',
+    adminHttp.logout
+  );
 
-  router.post('/actions', actionHttp.postAction);
-  router.get('/teams', teamHttp.getTeams);
+  router.put(
+    '/admin/users/:id/ban',
+    requireAuthenticatedSession,
+    adminHttp.banUser
+  );
 
-  router.put('/users/:uuid', userHttp.putUser);
-  router.get('/users/:uuid', userHttp.getUser);
+  router.delete(
+    '/admin/feed/:id',
+    requireAuthenticatedSession,
+    adminHttp.deleteFeedItem
+  );
 
-  router.get('/action_types', actionTypeHttp.getActionTypes);
+  router.get(
+    '/events',
+    requireClientHeaders(),
+    eventHttp.getEvents
+  );
+  router.get(
+    '/events/:id',
+    requireClientHeaders(),
+    eventHttp.getEvents
+  );
 
-  router.get('/feed', feedHttp.getFeed);
-  router.delete('/feed/:id', feedHttp.deleteFeedItem);
+  router.post(
+    '/actions',
+    requireClientHeaders(),
+    actionHttp.postAction
+  );
+  router.get(
+    '/teams',
+    requireClientHeaders(),
+    teamHttp.getTeams
+  );
 
-  router.get('/image/:id', imageHttp.getImage);
+  router.get(
+    '/image/:id',
+    imageHttp.getImage
+  );
 
-  router.get('/announcements', announcementHttp.getAnnouncements);
+  router.put(
+    '/users/:uuid',
+    requireClientHeaders(),
+    userHttp.putUser
+  );
+  router.get(
+    '/users/:uuid',
+    requireClientHeaders(),
+    userHttp.getUser
+  );
 
-  router.get('/markers', markerHttp.getMarkers);
+  router.get(
+    '/action_types',
+    requireClientHeaders(),
+    actionTypeHttp.getActionTypes
+  );
 
-  router.get('/cities', citiesHttp.getCities)
+  router.get(
+    '/feed',
+    requireClientHeaders(),
+    feedHttp.getFeed
+  );
+  router.delete(
+    '/feed/:id',
+    requireClientHeaders(),
+    feedHttp.deleteFeedItem
+  );
 
-  router.put('/vote', voteHttp.putVote);
+  router.get(
+    '/announcements',
+    requireClientHeaders(),
+    announcementHttp.getAnnouncements
+  );
 
-  router.get('/radio', radioHttp.getStations);
-  router.get('/radio/:id', radioHttp.getStation);
+  router.get(
+    '/markers',
+    requireClientHeaders(),
+    markerHttp.getMarkers
+  );
 
-  router.put('/mood', wappuMood.putMood);
-  router.get('/mood', wappuMood.getMood);
+  router.get(
+    '/cities',
+    requireClientHeaders(),
+    citiesHttp.getCities
+  );
+
+  router.put(
+    '/vote',
+    requireClientHeaders(),
+    voteHttp.putVote
+  );
+
+  router.get(
+    '/radio',
+    requireClientHeaders(),
+    radioHttp.getStations
+  );
+  router.get(
+    '/radio/:id',
+    requireClientHeaders(),
+    radioHttp.getStation
+  );
+
+  router.put(
+    '/mood',
+    requireClientHeaders(),
+    wappuMood.putMood
+  );
+  router.get(
+    '/mood',
+    requireClientHeaders(),
+    wappuMood.getMood
+  );
 
   return router;
 }

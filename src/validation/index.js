@@ -82,6 +82,10 @@ const schemas = {
   teamsParams: {
     city: common.primaryKeyId,
   },
+
+  adminParams: {
+    id: common.primaryKeyId.required()
+  }
 };
 
 const conversions = {};

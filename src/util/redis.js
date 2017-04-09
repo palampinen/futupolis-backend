@@ -1,12 +1,14 @@
-var logger = require('../util/logger')(__filename);
-var BPromise = require('bluebird');
-var redis = require('redis');
+const logger = require('../util/logger')(__filename);
+const BPromise = require('bluebird');
+const redis = require('redis');
+
 BPromise.promisifyAll(redis.RedisClient.prototype);
 BPromise.promisifyAll(redis.Multi.prototype);
 
 const requireEnvs = require('./require-envs');
 requireEnvs(['REDIS_URL']);
-var client = null;
+
+let client = null;
 
 function connect() {
   if (client === null) {

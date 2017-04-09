@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  redis:
+    image: redis:3
+    ports:
+      - "6379:6379"
+
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile-postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
+      - ./tools/init-database.sql:/docker-entrypoint-initdb.d/init-database.sql
+
+volumes:
+  db-data:

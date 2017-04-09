@@ -12,6 +12,11 @@ const oldVersionError =
 
 function createRequireApiToken(opts) {
   return function requireApiToken(req, res, next) {
+    // Session authenticated user, API-token isn't necessary
+    if (req.user) {
+      return next();
+    }
+
     var userToken = req.headers['x-token'];
 
     if (oldTokens.has(userToken)) {
