@@ -1,5 +1,8 @@
 const {knex} = require('../util/database').connect();
 import {hotScore} from './hot-score';
+import * as biasCore from './bias-core';
+import _ from 'lodash';
+
 
 function createOrUpdateVote(opts) {
   const updateVoteSql = `
@@ -23,6 +26,13 @@ function createOrUpdateVote(opts) {
     UPDATE feed_items
     SET hot_score = ?
     WHERE id = ?
+    RETURNING
+      (SELECT
+        users.team_id
+      FROM
+        feed_items
+        LEFT JOIN users ON users.id = feed_items.user_id
+      WHERE feed_items.id = ?)
   `;
 
   const updateVoteParams = [opts.value, opts.client.id, opts.feedItemId,
@@ -38,10 +48,17 @@ function createOrUpdateVote(opts) {
               result.rows[0]['age']
             ),
             opts.feedItemId,
+            opts.feedItemId,
           ])
       )
+      .then(result => biasCore.calculateBias({
+        userId: opts.client.id,
+        teamId: _.get(result, 'rows[0].team_id', null),
+        trx: trx,
+      }))
       .then(result => undefined)
       .catch(err => {
+        console.log(err);
         let error = new Error('No such feed item id: ' + opts.feedItemId);
         error.status = 404;
         throw error;
