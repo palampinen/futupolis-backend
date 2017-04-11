@@ -40,32 +40,32 @@ function createOrUpdateVote(opts) {
     opts.value, opts.ip, opts.client.id, opts.feedItemId,
   ];
 
-  return knex.transaction(function(trx) {
-    return trx.raw(updateVoteSql, updateVoteParams)
-      .then(result => trx.raw(selectVotesSql, [opts.feedItemId]))
-      .then(result =>
-        trx.raw(updateFeedItemSql, [
-            hotScore(
-              result.rows[0]['votes'],
-              result.rows[0]['age']
-            ),
-            opts.feedItemId,
-            opts.feedItemId,
-          ])
-      )
-      .then(result => biasCore.calculateBias({
-        userId: opts.client.id,
-        teamId: _.get(result, 'rows[0].team_id', null),
-        trx: trx,
-      }))
-      .then(result => undefined)
-      .catch(err => {
-        console.log(err);
-        let error = new Error('No such feed item id: ' + opts.feedItemId);
-        error.status = 404;
-        throw error;
-      });
-  });
+  return opts.client.isBanned
+    ? Promise.resolve()
+    : knex.transaction((trx) => trx.raw(updateVoteSql, updateVoteParams)
+        .then(result => trx.raw(selectVotesSql, [opts.feedItemId]))
+        .then(result =>
+          trx.raw(updateFeedItemSql, [
+              hotScore(
+                result.rows[0]['votes'],
+                result.rows[0]['age']
+              ),
+              opts.feedItemId,
+              opts.feedItemId,
+            ])
+        )
+        .then(result => biasCore.calculateBias({
+          userId: opts.client.id,
+          teamId: _.get(result, 'rows[0].team_id', null),
+          trx: trx,
+        }))
+        .then(result => undefined)
+        .catch(err => {
+          let error = new Error('No such feed item id: ' + opts.feedItemId);
+          error.status = 404;
+          throw error;
+        })
+    );
 }
 
 export {
