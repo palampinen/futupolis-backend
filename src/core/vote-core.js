@@ -7,9 +7,9 @@ import _ from 'lodash';
 function createOrUpdateVote(opts) {
   const updateVoteSql = `
     WITH upsert AS
-      (UPDATE votes SET value = ? WHERE user_id = ? AND feed_item_id = ? RETURNING *)
-      INSERT INTO votes (value, user_id, feed_item_id)
-      SELECT ?, ?, ? WHERE NOT EXISTS (SELECT * FROM upsert)
+      (UPDATE votes SET value = ?, ip = ? WHERE user_id = ? AND feed_item_id = ? RETURNING *)
+      INSERT INTO votes (value, ip, user_id, feed_item_id)
+      SELECT ?, ?, ?, ? WHERE NOT EXISTS (SELECT * FROM upsert)
   `;
 
   const selectVotesSql = `
@@ -35,8 +35,10 @@ function createOrUpdateVote(opts) {
       WHERE feed_items.id = ?)
   `;
 
-  const updateVoteParams = [opts.value, opts.client.id, opts.feedItemId,
-    opts.value, opts.client.id, opts.feedItemId];
+  const updateVoteParams = [
+    opts.value, opts.ip, opts.client.id, opts.feedItemId,
+    opts.value, opts.ip, opts.client.id, opts.feedItemId,
+  ];
 
   return knex.transaction(function(trx) {
     return trx.raw(updateVoteSql, updateVoteParams)
