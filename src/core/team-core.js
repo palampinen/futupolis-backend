@@ -2,6 +2,7 @@ const {knex} = require('../util/database').connect();
 import _ from 'lodash';
 import {deepChangeKeyCase} from '../util';
 
+
 function getTeams(opts) {
   const isBanned = opts.client && !!opts.client.isBanned;
   const voteScoreSql = `
@@ -11,13 +12,15 @@ function getTeams(opts) {
     FROM
       (SELECT
         wilsons(
-            COUNT(CASE votes.value WHEN 1 THEN 1 ELSE null END)::int,
-            COUNT(CASE votes.value WHEN -1 THEN -1 ELSE null END)::int
-          ) * COUNT(votes)::numeric AS value,
+          SUM(CASE votes.value WHEN 1 THEN (1 - voter_biases.bias) ELSE null END)::numeric,
+          SUM(CASE votes.value WHEN -1 THEN voter_biases.bias ELSE null END)::numeric
+        )
+        AS value,
         users.team_id AS team_id
       FROM feed_items
       JOIN users ON users.id = feed_items.user_id
       LEFT JOIN votes ON votes.feed_item_id = feed_items.id
+      JOIN voter_biases ON voter_biases.user_id = votes.user_id AND voter_biases.team_id = users.team_id
       WHERE NOT users.is_banned
       GROUP BY feed_items.id, users.team_id
     ) AS sub_query
@@ -42,7 +45,7 @@ function getTeams(opts) {
       actions_score.team_id AS id,
       actions_score.team_name AS name,
       actions_score.image_path AS image_path,
-      ROUND(SUM(COALESCE(actions_score.value, 0)) + SUM(COALESCE(vote_score.value, 0))) as score,
+      (COALESCE(actions_score.value, 0) + COALESCE(vote_score.value, 0))::int AS score,
       actions_score.city_id AS city
     FROM ${ actionScoreSql } AS actions_score
     LEFT JOIN ${ voteScoreSql } vote_score ON vote_score.team_id = actions_score.team_id
@@ -61,7 +64,7 @@ function getTeams(opts) {
   }
 
   sqlString += `
-    GROUP BY id, name, image_path, city
+    GROUP BY id, name, image_path, city, actions_score.value, vote_score.value
     ORDER BY score DESC, id
   `;
 
