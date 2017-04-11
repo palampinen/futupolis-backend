@@ -37,6 +37,8 @@ function getTeams(opts) {
     FROM teams
     LEFT JOIN actions ON teams.id = actions.team_id ${isBanned ? '' : 'AND NOT actions.is_banned'}
     LEFT JOIN action_types ON actions.action_type_id = action_types.id
+    LEFT JOIN users ON users.id = actions.user_id
+    WHERE NOT users.is_banned
     GROUP BY teams.id)
   `;
 
