@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import BPromise from 'bluebird';
+import _ from 'lodash';
 import * as biasCore from '../core/bias-core';
 const {knex} = require('../util/database').connect();
 const logger = require('../util/logger')(__filename);
@@ -22,13 +22,13 @@ function _updateBiases() {
     .innerJoin('users', 'users.id', 'feed_items.user_id')
     .groupBy(['votes.user_id', 'users.team_id'])
     .orderBy('votes.user_id')
-    .then(rows => BPromise.each(rows, row =>
-      biasCore.calculateBias({
-        userId: row.user_id,
-        teamId: row.team_id,
+    .then(rows => biasCore.calculateBias({
+      rows: _.map(rows, row => {
+        return {
+          teamId: row.team_id,
+          userId: row.user_id,
+        }
       })
-      .then(() => {
-        logger.info('Row updated');
-      })
-    ));
+    }
+  ));
 }

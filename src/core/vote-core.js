@@ -55,8 +55,10 @@ function createOrUpdateVote(opts) {
             ])
         )
         .then(result => biasCore.calculateBias({
-          userId: opts.client.id,
-          teamId: _.get(result, 'rows[0].team_id', null),
+          rows: [{
+            userId: opts.client.id,
+            teamId: _.get(result, 'rows[0].team_id', null),
+          }],
           trx: trx,
         }))
         .then(result => undefined)

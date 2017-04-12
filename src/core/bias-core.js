@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import BPromise from 'bluebird';
 const {knex} = require('../util/database').connect();
 
 
@@ -17,43 +18,33 @@ const calculateBias = (opts) => {
   `;
 
   const upsertSql = `
-    WITH upsert AS
-      (UPDATE voter_biases
-      SET bias = ?
-      WHERE user_id = ? AND team_id = ?
-      RETURNING *
-    ), inserted AS (
-      INSERT INTO voter_biases(bias, user_id, team_id)
-      SELECT ?, ?, ?
-      WHERE NOT EXISTS( SELECT * FROM upsert )
-      RETURNING *
-    )
-    SELECT *
-    FROM upsert
-    UNION ALL
-    SELECT *
-    FROM inserted;
+    INSERT INTO voter_biases(bias, user_id, team_id)
+    SELECT unnest(?::numeric[]), unnest(?::int[]), unnest(?::int[])
+    ON CONFLICT (user_id, team_id) DO
+    UPDATE SET bias = excluded.bias;
   `;
 
   const trx = opts.trx || knex;
-  const wilsonsParams = [
-    opts.userId,
-    opts.teamId,
-  ];
 
-  return trx.raw(wilsonsSql, wilsonsParams)
-    .then(results => {
-      return _.get(results, 'rows[0].wilsons', 0);
-    })
-    .then(bias => {
-      const upsertParams = [
-        bias, opts.userId, opts.teamId,
-        bias, opts.userId, opts.teamId,
-      ];
-
-      return trx.raw(upsertSql, upsertParams);
+  return BPromise.map(opts.rows, row => trx.raw(wilsonsSql, [row.userId, row.teamId])
+      .then(results => _.get(results, 'rows[0].wilsons', 0)
+    ))
+    .then(biases => {
+      const params = _getParams(opts.rows);
+      return trx.raw(upsertSql, [
+        biases,
+        params.userIds,
+        params.teamIds,
+      ]);
     })
 };
+
+function _getParams(rows) {
+  return {
+    userIds: _.map(rows, row => parseInt(row.userId)),
+    teamIds: _.map(rows, row => parseInt(row.teamId)),
+  };
+}
 
 export {
   calculateBias,
