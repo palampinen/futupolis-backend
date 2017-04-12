@@ -1,10 +1,43 @@
-const {knex} = require('../util/database').connect();
 import _ from 'lodash';
+import BPromise from 'bluebird';
+const {knex} = require('../util/database').connect();
+const redisClient = require('../util/redis').connect().client;
 import {deepChangeKeyCase} from '../util';
 
 
+const KEY_TEAMS = 'teams';
+const KEY_IS_STALE = 'teamsAreStale';
+
+function initialize() {
+  redisClient.getAsync(KEY_IS_STALE).then(isStale => {
+    const stale = isStale === null || isStale;
+    return stale
+      ? _updateCache()
+      : BPromise.resolve();
+  })
+}
+
+function _getField(cityId) {
+  return `city_${ !cityId ? 'all' : cityId }`;
+}
+
 function getTeams(opts) {
-  const isBanned = opts.client && !!opts.client.isBanned;
+  return redisClient.hgetAsync(KEY_TEAMS, _getField(opts.city)).then(result => {
+    return JSON.parse(result);
+  });
+}
+
+const _updateCache = BPromise.promisify(() => {
+  return knex('cities').select('*')
+    .then(cities => BPromise.map(cities, city =>
+      _getTeams(city.id).then(teams => redisClient.hmsetAsync(KEY_TEAMS, _getField(city.id), JSON.stringify(teams)))
+    ))
+    .then(() =>
+      _getTeams().then(teams => redisClient.hmsetAsync(KEY_TEAMS, _getField(), JSON.stringify(teams)))
+    );
+});
+
+function _getTeams(city) {
   const voteScoreSql = `
     (SELECT
       team_id,
@@ -34,7 +67,7 @@ function getTeams(opts) {
       SUM(COALESCE(action_types.value, 0)) AS value,
       teams.id AS team_id
     FROM teams
-    LEFT JOIN actions ON teams.id = actions.team_id ${isBanned ? '' : 'AND NOT actions.is_banned'}
+    LEFT JOIN actions ON teams.id = actions.team_id AND NOT actions.is_banned
     LEFT JOIN action_types ON actions.action_type_id = action_types.id
     LEFT JOIN users ON users.id = actions.user_id AND NOT users.is_banned
     GROUP BY teams.id)
@@ -55,9 +88,9 @@ function getTeams(opts) {
   let params = [];
   let whereClauses = [];
 
-  if (opts.city) {
+  if (city) {
     whereClauses.push('teams.city_id = ?');
-    params.push(opts.city);
+    params.push(city);
   }
 
   if (whereClauses.length > 0) {
@@ -76,5 +109,6 @@ function getTeams(opts) {
 }
 
 export {
-  getTeams
+  initialize,
+  getTeams,
 };
