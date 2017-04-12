@@ -7,14 +7,12 @@ import {deepChangeKeyCase} from '../util';
 
 const KEY_TEAMS = 'teams';
 const KEY_IS_STALE = 'teamsAreStale';
+const KEY_IS_UPDATING = 'teamsAreUpdating';
+const CACHE_TTL = process.env.TEAMS_CACHE_TTL ||  60 * 10; // in 's'
+
 
 function initialize() {
-  redisClient.getAsync(KEY_IS_STALE).then(isStale => {
-    const stale = isStale === null || isStale;
-    return stale
-      ? _updateCache()
-      : BPromise.resolve();
-  })
+  _isStale().then(stale => stale ? _updateCache() : BPromise.resolve());
 }
 
 function _getField(cityId) {
@@ -22,20 +20,47 @@ function _getField(cityId) {
 }
 
 function getTeams(opts) {
-  return redisClient.hgetAsync(KEY_TEAMS, _getField(opts.city)).then(result => {
-    return JSON.parse(result);
+  _isStale().then(stale => {
+    if (stale) _updateCache();
   });
+
+  return redisClient.hgetAsync(KEY_TEAMS, _getField(opts.city))
+    .then(result =>JSON.parse(result));
 }
 
-const _updateCache = BPromise.promisify(() => {
-  return knex('cities').select('*')
-    .then(cities => BPromise.map(cities, city =>
-      _getTeams(city.id).then(teams => redisClient.hmsetAsync(KEY_TEAMS, _getField(city.id), JSON.stringify(teams)))
-    ))
-    .then(() =>
-      _getTeams().then(teams => redisClient.hmsetAsync(KEY_TEAMS, _getField(), JSON.stringify(teams)))
+function _isStale() {
+  return redisClient.getAsync(KEY_IS_STALE).then(stale => !(stale === 'false'));
+}
+
+function _isUpdating() {
+  return redisClient
+    .getAsync(KEY_IS_UPDATING)
+    .then(isUpdating => isUpdating == 'true');
+}
+
+function _updateCache() {
+  const update = redisClient.setAsync(KEY_IS_UPDATING, 'true')
+    .then(() => knex('cities').select('*')
+      // Cache per city team rankings
+      .then(cities =>
+        BPromise.map(cities, city =>
+          _getTeams(city.id).then(teams =>
+            redisClient.hmsetAsync(KEY_TEAMS, _getField(city.id), JSON.stringify(teams))
+          )
+        )
+      )
+      // Cache nation wide team rankings
+      .then(() =>
+        _getTeams().then(teams =>
+            redisClient.hmsetAsync(KEY_TEAMS, _getField(), JSON.stringify(teams))
+        )
+      )
+      .then(() => redisClient.msetAsync(KEY_IS_STALE, 'false', KEY_IS_UPDATING, 'false'))
+      .then(() => redisClient.expire(KEY_IS_STALE, CACHE_TTL))
     );
-});
+
+  return _isUpdating().then(isUpdating => isUpdating ? BPromise.resolve() : update);
+}
 
 function _getTeams(city) {
   const voteScoreSql = `
