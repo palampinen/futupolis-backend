@@ -9,10 +9,10 @@ const KEY_TEAMS = 'teams';
 const KEY_IS_STALE = 'teamsAreStale';
 const KEY_IS_UPDATING = 'teamsAreUpdating';
 const CACHE_TTL = process.env.TEAMS_CACHE_TTL ||  60 * 10; // in 's'
-
+let init;
 
 function initialize() {
-  _isStale().then(stale => stale ? _updateCache() : BPromise.resolve());
+  init = _isStale().then(stale => stale ? _updateCache() : BPromise.resolve());
 }
 
 function _getField(cityId) {
@@ -21,11 +21,15 @@ function _getField(cityId) {
 
 function getTeams(opts) {
   _isStale().then(stale => {
+    // Incur a cache refresh if necessary
     if (stale) _updateCache();
   });
 
-  return redisClient.hgetAsync(KEY_TEAMS, _getField(opts.city))
-    .then(result =>JSON.parse(result));
+  // Do not await for update to complete as it may take some time.
+  return BPromise.all([init]).then(() =>
+    redisClient.hgetAsync(KEY_TEAMS, _getField(opts.city))
+      .then(result =>JSON.parse(result))
+  );
 }
 
 function _isStale() {
@@ -72,7 +76,7 @@ function _getTeams(city) {
         wilsons(
           SUM(CASE votes.value WHEN 1 THEN (1 - voter_biases.bias) ELSE null END)::numeric,
           SUM(CASE votes.value WHEN -1 THEN voter_biases.bias ELSE null END)::numeric
-        ) AS value,
+        ) * COUNT(votes) AS value,
         users.team_id AS team_id
       FROM (
         SELECT feed_items.*
