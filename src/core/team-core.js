@@ -42,6 +42,13 @@ function _isUpdating() {
     .then(isUpdating => isUpdating == 'true');
 }
 
+/**
+ * Updates the cache if no update is in progress. Otherwise does nothing.
+ *
+ * To note is that checking for on going update is best effort only. Overlapping
+ * updates are possible, but should be very uncommon and not impact the
+ * generated cache in a negative way.
+ **/
 function _updateCache() {
   const update = redisClient.setAsync(KEY_IS_UPDATING, 'true')
     .then(() => knex('cities').select('*')
