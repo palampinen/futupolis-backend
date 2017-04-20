@@ -9,31 +9,33 @@ const KEY_TEAMS = 'teams';
 const KEY_IS_STALE = 'teamsAreStale';
 const KEY_IS_UPDATING = 'teamsAreUpdating';
 const CACHE_TTL = process.env.TEAMS_CACHE_TTL ||  60 * 10; // in 's'
-let init;
+let initializeModulePromise;
 
 function initialize() {
-  init = _isStale().then(stale => stale ? _updateCache() : BPromise.resolve());
+  initializeModulePromise = _isStale().then(stale => stale ? _updateCache() : BPromise.resolve());
 }
 
 function _getField(cityId) {
-  return `city_${ !cityId ? 'all' : cityId }`;
+  return `city_${ cityId ? cityId : 'all' }`;
 }
 
 function getTeams(opts) {
   _isStale().then(stale => {
     // Incur a cache refresh if necessary
-    if (stale) _updateCache();
+    if (stale) {
+      _updateCache();
+    }
   });
 
   // Do not await for update to complete as it may take some time.
-  return BPromise.all([init]).then(() =>
+  return BPromise.resolve(initializeModulePromise).then(() =>
     redisClient.hgetAsync(KEY_TEAMS, _getField(opts.city))
-      .then(result =>JSON.parse(result))
+      .then(result => JSON.parse(result))
   );
 }
 
 function _isStale() {
-  return redisClient.getAsync(KEY_IS_STALE).then(stale => !(stale === 'false'));
+  return redisClient.getAsync(KEY_IS_STALE).then(stale => stale !== 'false');
 }
 
 function _isUpdating() {
@@ -70,7 +72,7 @@ function _updateCache() {
       .then(() => redisClient.expire(KEY_IS_STALE, CACHE_TTL))
     );
 
-  return _isUpdating().then(isUpdating => isUpdating ? BPromise.resolve() : update);
+  return _isUpdating().then(isUpdating => isUpdating ? BPromise.resolve() : update());
 }
 
 function _getTeams(city) {
@@ -92,7 +94,7 @@ function _getTeams(city) {
       ) feed_items
       JOIN users ON users.id = feed_items.user_id
       LEFT JOIN votes ON votes.feed_item_id = feed_items.id
-      JOIN voter_biases ON voter_biases.user_id = votes.user_id AND voter_biases.team_id = users.team_id
+      LEFT JOIN voter_biases ON voter_biases.user_id = votes.user_id AND voter_biases.team_id = users.team_id
       GROUP BY feed_items.id, users.team_id
     ) AS sub_query
     GROUP BY team_id)

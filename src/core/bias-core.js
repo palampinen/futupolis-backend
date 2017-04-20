@@ -3,7 +3,7 @@ import BPromise from 'bluebird';
 const {knex} = require('../util/database').connect();
 
 
-const calculateBias = (opts) => {
+const calculateBias = opts => {
   const wilsonsSql = `
     SELECT
       wilsons(
@@ -11,9 +11,9 @@ const calculateBias = (opts) => {
         COUNT(CASE votes.value WHEN -1 THEN 1 ELSE null END)::numeric
       )
     FROM votes
-    LEFT JOIN feed_items ON feed_items.id = votes.feed_item_id
-    LEFT JOIN users ON users.id = feed_items.user_id
-    LEFT JOIN teams ON teams.id = users.team_id
+    JOIN feed_items ON feed_items.id = votes.feed_item_id
+    JOIN users ON users.id = feed_items.user_id
+    JOIN teams ON teams.id = users.team_id
     WHERE votes.user_id = ? AND teams.id = ?
   `;
 
