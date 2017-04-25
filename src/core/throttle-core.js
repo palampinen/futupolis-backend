@@ -101,9 +101,9 @@ function executeAction(uuid, actionType) {
 /**
  * Rolls action's throttle state back to last known configuration.
  *
- * If the last known state is good, IE. nonnull, the state is restored,
- * otherwise throttle on that item is lifted. The stack has a depth
- * of 1, resulting in successive calls will lifting throttle on that item.
+ * If the last known state is good, IE. nonnull, the state is restored.
+ * Otherwise throttle on that item is lifted. The stack has a depth
+ * of 1, resulting in successive calls also lifting throttle on that item.
  */
 function rollbackAction(uuid, actionType) {
   if (process.env.DISABLE_THROTTLE === 'true') {
