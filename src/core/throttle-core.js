@@ -117,13 +117,13 @@ function rollbackAction(uuid, actionType) {
 
   return redisClient.hgetallAsync(key).then(lastThrottlesByActionType => {
     const hashPrevious = getHashPrevious(actionType);
-    const timePrevious = _.get(lastThrottlesByActionType, hashPrevious, 'null');
+    const timePrevious = _.get(lastThrottlesByActionType, hashPrevious, null);
 
-    return timePrevious === 'null'
+    return timePrevious === null
       ? trx.hdel(key, actionType)
         .execAsync()
       : trx.hmset(key, actionType, timePrevious)
-        .hmset(key, hashPrevious, null)
+        .hdel(key, hashPrevious)
         .execAsync();
   });
 }
