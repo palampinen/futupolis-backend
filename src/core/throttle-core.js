@@ -91,10 +91,11 @@ function executeAction(uuid, actionType) {
 
   return redisClient.hgetallAsync(key).then(lastThrottlesByActionType => {
     const hashPrevious = getHashPrevious(actionType);
-    const timePrevious = _.get(lastThrottlesByActionType, actionType, 'null');
+    const timePrevious = _.get(lastThrottlesByActionType, actionType, null);
     return trx.hmset(key, actionType, timeNow)
       .hmset(key, hashPrevious, timePrevious)
-      .execAsync();
+      .execAsync()
+      .then(() => BPromise.resolve());
   });
 }
 
@@ -122,9 +123,11 @@ function rollbackAction(uuid, actionType) {
     return timePrevious === null
       ? trx.hdel(key, actionType)
         .execAsync()
+        .then(() => BPromise.resolve())
       : trx.hmset(key, actionType, timePrevious)
         .hdel(key, hashPrevious)
-        .execAsync();
+        .execAsync()
+        .then(() => BPromise.resolve());
   });
 }
 
