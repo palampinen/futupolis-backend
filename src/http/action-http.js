@@ -19,13 +19,16 @@ let postAction = createJsonRoute(function(req, res) {
     throwStatus(403);
   }
 
+  // Optimistic execution. Rolled back if action cannot be completed
+  let execute;
+
   return throttleCore.canDoAction(action.user, action.type)
     .then(canDoAction => {
       if (!canDoAction) {
         throwStatus(429, `Too many actions of type ${ action.type }`);
       }
 
-      const execute = throttleCore.executeAction(action.user, action.type);
+       execute = throttleCore.executeAction(action.user, action.type);
 
       let handleAction;
       if (action.type === 'IMAGE') {
@@ -37,27 +40,28 @@ let postAction = createJsonRoute(function(req, res) {
         handleAction = actionCore.getActionType(action.type)
         .then(type => {
           if (type === null) {
-            execute.then(() => throttleCore.rollbackAction(action.user, action.type)
-              .then(() => {
-                throwStatus(400, 'Action type ' + action.type + ' does not exist');
-            }));
+            throwStatus(400, 'Action type ' + action.type + ' does not exist');
           } else if (type.code === 'CHECK_IN_EVENT') {
-            return eventHttp.isValidCheckIn(action)
-              .catch(err => {
-                execute.then(() => throttleCore.rollbackAction(action.user, action.type)
-                  .then(() => {
-                    throw err;
-                }));
-              });
+            return eventHttp.isValidCheckIn(action);
           } else {
             return Promise.resolve();
           }
         })
-        .then(() => actionCore.createAction(_.merge(action, {client: req.client})));
+        .then(() => actionCore.createAction(_.merge(action, {client: req.client})))
+        .catch();
       }
 
       return handleAction
         .then(() => undefined);
+    })
+    .catch(err => {
+      if (execute) {
+        return execute.then(throttleCore.rollbackAction(action.user, action.type)).then(() => {
+          throw err
+        });
+      } else {
+        throw err;
+      }
     });
 });
 
