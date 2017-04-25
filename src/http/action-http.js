@@ -56,6 +56,7 @@ let postAction = createJsonRoute(function(req, res) {
     })
     .catch(err => {
       if (execute) {
+        // If action was put on cooldown, roll it back
         return execute.then(throttleCore.rollbackAction(action.user, action.type)).then(() => {
           throw err
         });
