@@ -37,13 +37,17 @@ let postAction = createJsonRoute(function(req, res) {
         handleAction = actionCore.getActionType(action.type)
         .then(type => {
           if (type === null) {
-            execute.then(() => throttleCore.rollbackAction(action.user, action.type));
-            throwStatus(400, 'Action type ' + action.type + ' does not exist');
+            execute.then(() => throttleCore.rollbackAction(action.user, action.type)
+              .then(() => {
+                throwStatus(400, 'Action type ' + action.type + ' does not exist');
+            }));
           } else if (type.code === 'CHECK_IN_EVENT') {
             return eventHttp.isValidCheckIn(action)
               .catch(err => {
-                execute.then(() => throttleCore.rollbackAction(action.user, action.type));
-                throw err;
+                execute.then(() => throttleCore.rollbackAction(action.user, action.type)
+                  .then(() => {
+                    throw err;
+                }));
               });
           } else {
             return Promise.resolve();
