@@ -1,12 +1,17 @@
 'use strict';
 
 import * as actionTypeCore from './action-type-core';
-var BPromise = require('bluebird');
+import _ from 'lodash';
+import BPromise from 'bluebird';
 
 let redisClient;
 
 function getKey(uuid) {
   return `throttle--${ uuid }`;
+}
+
+function getHashPrevious(actionType) {
+  return `${actionType}Previous`;
 }
 
 // Cache of action types
@@ -78,13 +83,47 @@ function executeAction(uuid, actionType) {
     return BPromise.resolve();
   }
 
+  const key = getKey(uuid);
   const timeNow = Date.now().toString();
+  const trx = redisClient.multi();
 
-  return redisClient.hmsetAsync(getKey(uuid), actionType, timeNow);
+  trx.watch(key);
+
+  return redisClient.hgetallAsync(key).then(lastThrottlesByActionType => {
+    const hashPrevious = getHashPrevious(actionType);
+    const timePrevious = _.get(lastThrottlesByActionType, actionType, 'null');
+    return trx.hmset(key, actionType, timeNow)
+      .hmset(key, hashPrevious, timePrevious)
+      .execAsync();
+  });
+}
+
+function rollbackAction(uuid, actionType) {
+  if (process.env.DISABLE_THROTTLE === 'true') {
+    return BPromise.resolve();
+  }
+
+  const key = getKey(uuid);
+  const trx = redisClient.multi();
+
+  trx.watch(key);
+
+  return redisClient.hgetallAsync(key).then(lastThrottlesByActionType => {
+    const hashPrevious = getHashPrevious(actionType);
+    const timePrevious = _.get(lastThrottlesByActionType, hashPrevious, 'null');
+
+    return timePrevious === 'null'
+      ? trx.hdel(key, actionType)
+        .execAsync()
+      : trx.hmset(key, actionType, timePrevious)
+        .hmset(key, hashPrevious, null)
+        .execAsync();
+  });
 }
 
 export {
   initialize,
   canDoAction,
-  executeAction
+  executeAction,
+  rollbackAction,
 };
