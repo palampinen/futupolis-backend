@@ -25,7 +25,7 @@ let postAction = createJsonRoute(function(req, res) {
         throwStatus(429, `Too many actions of type ${ action.type }`);
       }
 
-      throttleCore.executeAction(action.user, action.type);
+      const execute = throttleCore.executeAction(action.user, action.type);
 
       let handleAction;
       if (action.type === 'IMAGE') {
@@ -37,12 +37,12 @@ let postAction = createJsonRoute(function(req, res) {
         handleAction = actionCore.getActionType(action.type)
         .then(type => {
           if (type === null) {
-            throttleCore.rollbackAction(action.user, action.type);
+            execute.then(() => throttleCore.rollbackAction(action.user, action.type));
             throwStatus(400, 'Action type ' + action.type + ' does not exist');
           } else if (type.code === 'CHECK_IN_EVENT') {
             return eventHttp.isValidCheckIn(action)
               .catch(err => {
-                throttleCore.rollbackAction(action.user, action.type);
+                execute.then(() => throttleCore.rollbackAction(action.user, action.type));
                 throw err;
               });
           } else {
