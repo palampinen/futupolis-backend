@@ -1,6 +1,6 @@
 import _ from 'lodash';
-const {knex} = require('../util/database').connect();
-import {GCS_CONFIG} from '../util/gcs';
+const { knex } = require('../util/database').connect();
+import { GCS_CONFIG, pathToUrl } from '../util/gcs';
 import CONST from '../constants';
 const logger = require('../util/logger')(__filename);
 import * as score from './score-core';
@@ -58,10 +58,13 @@ function getStickySqlString(city) {
  * @param {number} [opts.offset]    Offset results by given amount.
  */
 function getFeed(opts) {
-  opts = _.merge({
-    includeSticky: true,
-    limit: 20
-  }, opts);
+  opts = _.merge(
+    {
+      includeSticky: true,
+      limit: 20,
+    },
+    opts
+  );
 
   let sqlString = `
     (SELECT
@@ -86,7 +89,7 @@ function getFeed(opts) {
     LEFT JOIN teams ON teams.id = users.team_id
     LEFT JOIN votes ON votes.user_id = ? AND votes.feed_item_id = feed_items.id
     LEFT JOIN comments ON comments.feed_item_id = feed_items.id
-    ${ _getWhereSql(opts) }
+    ${_getWhereSql(opts)}
     GROUP BY
         feed_items.id,
         users.name,
@@ -98,10 +101,10 @@ function getFeed(opts) {
   let params = [opts.client.id];
 
   // TODO: Sticky messages should have their own endpoint
-  const sortTop = opts.sort === CONST.FEED_SORT_TYPES.TOP
+  const sortTop = opts.sort === CONST.FEED_SORT_TYPES.TOP;
   const includeSticky = opts.includeSticky && !opts.beforeId && !sortTop;
   if (includeSticky) {
-    sqlString = getStickySqlString(opts.city) + " UNION ALL " + sqlString;
+    sqlString = getStickySqlString(opts.city) + ' UNION ALL ' + sqlString;
     params.push(opts.client.id);
   }
 
@@ -110,12 +113,11 @@ function getFeed(opts) {
   params.push(opts.limit);
 
   if (opts.offset) {
-    sqlString +=  ` OFFSET ?`;
+    sqlString += ` OFFSET ?`;
     params.push(opts.offset);
   }
 
-  return knex.raw(sqlString, params)
-  .then(result => {
+  return knex.raw(sqlString, params).then(result => {
     const rows = result.rows;
 
     if (_.isEmpty(rows)) {
@@ -157,15 +159,15 @@ function getFeedItem(id, client) {
       votes.value
   `;
 
-
-  return knex.raw(feedItemSql, [id, id]).then((result) => {
+  return knex.raw(feedItemSql, [id, id]).then(result => {
     const row = _.get(result, 'rows[0]', null);
 
     if (!row) {
       return null;
     }
 
-    return knex.select([
+    return knex
+      .select([
         'comments.text',
         'users.name AS userName',
         'comments.created_at AS createdAt',
@@ -175,12 +177,26 @@ function getFeedItem(id, client) {
       .innerJoin('users', 'users.id', 'comments.user_id')
       .where('feed_item_id', '=', id)
       .orderBy('comments.created_at', 'ASC')
-      .then((comments) => {
+      .then(rows => {
         const feedItem = _actionToFeedObject(row, client);
-        feedItem.comments = comments || [];
+        const comments = _.map(rows, commentRow => _rowToCommentObject(commentRow, client));
+        feedItem.comments = comments || [];
         return feedItem;
       });
   });
+}
+
+function _rowToCommentObject(row, client) {
+  return {
+    id: row['commentId'],
+    text: row['text'],
+    userName: row['userName'],
+    userId: row['userId'],
+    createdAt: row['createdAt'],
+    imagePath: pathToUrl(row['imagePath']),
+    profilePicture: pathToUrl(row['profilePicture']),
+    authorType: _resolveAuthorType(row['userId'].toString(), client),
+  };
 }
 
 function _sanitizeText(text) {
@@ -188,7 +204,7 @@ function _sanitizeText(text) {
     return text;
   }
 
-  return text.replace(/(\n|\r)+/g, " ");
+  return text.replace(/(\n|\r)+/g, ' ');
 }
 
 function createFeedItem(feedItem, trx) {
@@ -197,11 +213,11 @@ function createFeedItem(feedItem, trx) {
   }
 
   const dbRow = {
-    'image_path': feedItem.imagePath,
-    'text':       _sanitizeText(feedItem.text),
-    'type':       feedItem.type,
+    image_path: feedItem.imagePath,
+    text: _sanitizeText(feedItem.text),
+    type: feedItem.type,
     // Division to bring time stamp's accuracy inline with postgres values.
-    'hot_score':  _.round(score.hotScore(0, moment.utc().valueOf() / 1000), 4),
+    hot_score: _.round(score.hotScore(0, moment.utc().valueOf() / 1000), 4),
   };
 
   const location = feedItem.location;
@@ -220,7 +236,8 @@ function createFeedItem(feedItem, trx) {
   if (feedItem.type === 'IMAGE' && feedItem.client) {
     // Get event_id from user's last check in and check
     // that the event is still ongoing
-    dbRow.event_id = knex.raw(`
+    dbRow.event_id = knex.raw(
+      `
       (SELECT id
       FROM events
       WHERE
@@ -232,7 +249,9 @@ function createFeedItem(feedItem, trx) {
             code = 'CHECK_IN_EVENT' AND
             user_id = ?
         ) AND now() BETWEEN start_time AND end_time)
-    `, [feedItem.client.id]);
+    `,
+      [feedItem.client.id]
+    );
   }
 
   if (feedItem.client) {
@@ -241,7 +260,10 @@ function createFeedItem(feedItem, trx) {
 
   trx = trx || knex;
 
-  return trx.returning('id').insert(dbRow).into('feed_items')
+  return trx
+    .returning('id')
+    .insert(dbRow)
+    .into('feed_items')
     .then(rows => {
       if (_.isEmpty(rows)) {
         throw new Error('Feed item row creation failed: ' + dbRow);
@@ -252,7 +274,7 @@ function createFeedItem(feedItem, trx) {
     .catch(err => {
       if (err.constraint === 'feed_items_city_id_foreign') {
         err.status = 404;
-        err.message = `No such city id: ${ dbRow.city_id }`;
+        err.message = `No such city id: ${dbRow.city_id}`;
       }
 
       throw err;
@@ -262,18 +284,20 @@ function createFeedItem(feedItem, trx) {
 function deleteFeedItem(id, opts) {
   opts = opts || {};
 
-  return knex('feed_items').delete().where({
-    'id': id,
-    'user_id': knex.raw('(SELECT id from users WHERE uuid = ?)', [opts.client.uuid])
-  })
-  .then(deletedCount => {
-    if (deletedCount > 1) {
-      logger.error('Deleted feed item', id, 'client uuid:', opts.client.uuid);
-      throw new Error('Unexpected amount of deletes happened: ' + deletedCount)
-    }
+  return knex('feed_items')
+    .delete()
+    .where({
+      id: id,
+      user_id: knex.raw('(SELECT id from users WHERE uuid = ?)', [opts.client.uuid]),
+    })
+    .then(deletedCount => {
+      if (deletedCount > 1) {
+        logger.error('Deleted feed item', id, 'client uuid:', opts.client.uuid);
+        throw new Error('Unexpected amount of deletes happened: ' + deletedCount);
+      }
 
-    return deletedCount;
-  });
+      return deletedCount;
+    });
 }
 
 function _actionToFeedObject(row, client) {
@@ -291,7 +315,7 @@ function _actionToFeedObject(row, client) {
       id: row['user_id'],
       name: row['user_name'],
       team: row['team_name'],
-      type: _resolveAuthorType(row, client),
+      type: _resolveAuthorType(row['user_id'], client),
       profilePicture: row['profile_picture_url'],
     },
     createdAt: row['created_at'],
@@ -301,7 +325,7 @@ function _actionToFeedObject(row, client) {
   if (row.location) {
     feedObj.location = {
       latitude: row.location.y,
-      longitude: row.location.x
+      longitude: row.location.x,
     };
   }
 
@@ -312,8 +336,7 @@ function _actionToFeedObject(row, client) {
       feedObj.url = GCS_CONFIG.baseUrl + '/' + GCS_CONFIG.bucketName + '/' + imagePath;
     } else {
       feedObj.url =
-        'https://' + GCS_CONFIG.bucketName + '.imgix.net/' + imagePath +
-        process.env.IMGIX_QUERY;
+        'https://' + GCS_CONFIG.bucketName + '.imgix.net/' + imagePath + process.env.IMGIX_QUERY;
     }
   } else if (feedObj.type === 'TEXT') {
     feedObj.text = row.text;
@@ -356,7 +379,7 @@ function _getWhereSql(opts) {
   }
 
   return whereClauses.length > 0
-    ? knex.raw(` WHERE ${ whereClauses.join(' AND ')}`, params).toString()
+    ? knex.raw(` WHERE ${whereClauses.join(' AND ')}`, params).toString()
     : '';
 }
 
@@ -373,10 +396,7 @@ function _getSortingSql(sort) {
   }
 }
 
-
-function _resolveAuthorType(row, client) {
-  const rowUserId = row['user_id'];
-
+function _resolveAuthorType(rowUserId, client) {
   if (rowUserId === null) {
     return CONST.AUTHOR_TYPES.SYSTEM;
   } else if (rowUserId === client.id) {
@@ -385,10 +405,4 @@ function _resolveAuthorType(row, client) {
 
   return CONST.AUTHOR_TYPES.OTHER_USER;
 }
-
-export {
-  getFeed,
-  createFeedItem,
-  deleteFeedItem,
-  getFeedItem,
-};
+export { getFeed, createFeedItem, deleteFeedItem, getFeedItem };
