@@ -5,7 +5,7 @@ const logger = require('../util/logger')(__filename);
 
 // # Image Caption settings
 const BAR_HEIGHT = 60;
-const BAR_COLOR = 'rgba(0, 0, 0, .35)';
+const BAR_COLOR = 'rgba(51, 50, 56, 0.4)';
 const FONT_SIZE = 38;
 const DEFAULT_WIDTH = 1024;
 const DEFAULT_HEIGHT = 1024;
@@ -27,7 +27,7 @@ function getRectangleBottom(imageHeight, rectPosition, rectHeight) {
 // Text position
 // Calculate vertical offset from center
 // rectPosition [0, 1]
-const textBaselineAdjust = 2;
+const textBaselineAdjust = 3;
 function getTextPositionFromCenter(imageHeight, rectPosition, rectHeight) {
   return (
     Math.min(
