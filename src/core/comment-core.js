@@ -15,6 +15,24 @@ const newComment = (action) =>  knex('comments').insert({
 
   throw err;
 });
+function deleteComment(id, opts) {
+  opts = opts || {};
+
+  return knex('comments')
+    .delete()
+    .where({
+      id: id,
+      user_id: knex.raw('(SELECT id from users WHERE uuid = ?)', [opts.client.uuid]),
+    })
+    .then(deletedCount => {
+      if (deletedCount > 1) {
+        logger.error('Deleted comment', id, 'client uuid:', opts.client.uuid);
+        throw new Error('Unexpected amount of deletes happened: ' + deletedCount);
+      }
+
+      return deletedCount;
+    });
+}
 
 export {
   newComment,
