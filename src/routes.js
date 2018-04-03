@@ -12,7 +12,7 @@ import * as citiesHttp from './http/cities-http';
 import * as radioHttp from './http/radio-http';
 import * as wappuMood from './http/wappu-mood-http';
 import * as imageHttp from './http/image-http';
-
+import * as commentHttp from './http/comment-http';
 
 function createRouter() {
   const router = express.Router();
@@ -33,13 +33,15 @@ function createRouter() {
   router.delete('/feed/:id', feedHttp.deleteFeedItem);
   router.get('/feed/:id', feedHttp.getFeedItem);
 
+  router.delete('/comment/:id', commentHttp.deleteComment);
+
   router.get('/image/:id', imageHttp.getImage);
 
   router.get('/announcements', announcementHttp.getAnnouncements);
 
   router.get('/markers', markerHttp.getMarkers);
 
-  router.get('/cities', citiesHttp.getCities)
+  router.get('/cities', citiesHttp.getCities);
 
   router.put('/vote', voteHttp.putVote);
 
