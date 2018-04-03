@@ -3,9 +3,16 @@ var Joi = require('joi');
 import CONST from '../constants';
 
 var common = {
-  team: Joi.number().integer().min(0),
-  userUuid: Joi.string().regex(/^[A-Za-z0-9_-]+$/).min(1, 'utf8').max(128, 'utf8'),
-  primaryKeyId: Joi.number().integer().min(0)
+  team: Joi.number()
+    .integer()
+    .min(0),
+  userUuid: Joi.string()
+    .regex(/^[A-Za-z0-9_-]+$/)
+    .min(1, 'utf8')
+    .max(128, 'utf8'),
+  primaryKeyId: Joi.number()
+    .integer()
+    .min(0),
 };
 
 const schemas = {
@@ -13,25 +20,39 @@ const schemas = {
 
   action: {
     user: common.userUuid.required(),
-    type: Joi.string().uppercase().required(),
+    type: Joi.string()
+      .uppercase()
+      .required(),
     imageData: Joi.string().when('type', { is: 'IMAGE', then: Joi.required() }),
-    imageText: Joi.string().max(50, 'utf8').optional(),
-    imageTextPosition: Joi.number().min(0).max(1).optional(),
-    text: Joi.string().when('type', { is: Joi.valid('TEXT', 'COMMENT'), then: Joi.required() }),
-    eventId: common.primaryKeyId.when('type', { is: 'CHECK_IN_EVENT', then: Joi.required()}),
+    imageText: Joi.string()
+      .max(50, 'utf8')
+      .optional(),
+    imageTextPosition: Joi.number()
+      .min(0)
+      .max(1)
+      .optional(),
+    text: Joi.string().when('type', { is: Joi.valid('TEXT'), then: Joi.required() }),
+    eventId: common.primaryKeyId.when('type', { is: 'CHECK_IN_EVENT', then: Joi.required() }),
     city: common.primaryKeyId,
     feedItemId: common.primaryKeyId.when('type', { is: 'COMMENT', then: Joi.required() }),
     location: Joi.object({
       latitude: Joi.number(),
-      longitude: Joi.number()
-    }).when('type', {is: 'CHECK_IN_EVENT', then: Joi.required()}),
+      longitude: Joi.number(),
+    }).when('type', { is: 'CHECK_IN_EVENT', then: Joi.required() }),
   },
 
   user: {
     uuid: common.userUuid.required(),
-    name: Joi.string().min(1, 'utf8').max(50, 'utf8').required(),
+    name: Joi.string()
+      .min(1, 'utf8')
+      .max(50, 'utf8')
+      .required(),
+    info: Joi.string()
+      .max(10000, 'utf8')
+      .optional(),
     team: common.team.required(),
     profilePicture: Joi.string(),
+    imageData: Joi.string().optional(),
   },
 
   userQueryParams: {
@@ -40,10 +61,19 @@ const schemas = {
 
   feedParams: {
     city: common.primaryKeyId,
-    beforeId: Joi.number().integer().min(0).optional(),
-    limit: Joi.number().integer().min(1).max(100).optional(),
+    beforeId: Joi.number()
+      .integer()
+      .min(0)
+      .optional(),
+    limit: Joi.number()
+      .integer()
+      .min(1)
+      .max(100)
+      .optional(),
     since: Joi.date().iso(),
-    offset: Joi.number().integer().min(0),
+    offset: Joi.number()
+      .integer()
+      .min(0),
     type: Joi.string()
       .valid(['TEXT', 'IMAGE'])
       .optional(),
@@ -54,20 +84,33 @@ const schemas = {
   },
 
   imageParams: {
-    imageId: Joi.string().required()
+    imageId: Joi.string().required(),
   },
 
   vote: {
-    value: Joi.number().integer().valid(-1, 0, 1),
-    feedItemId: Joi.number().integer().required(),
+    value: Joi.number()
+      .integer()
+      .valid(-1, 0, 1),
+    feedItemId: Joi.number()
+      .integer()
+      .required(),
   },
 
   upsertMoodParams: {
-    rating: Joi.number().precision(4).min(0).max(10).required(),
-    description: Joi.string().min(1, 'utf8').max(128, 'utf8').optional().allow([null]).default(null),
+    rating: Joi.number()
+      .precision(4)
+      .min(0)
+      .max(10)
+      .required(),
+    description: Joi.string()
+      .min(1, 'utf8')
+      .max(128, 'utf8')
+      .optional()
+      .allow([null])
+      .default(null),
     location: Joi.object({
       latitude: Joi.number(),
-      longitude: Joi.number()
+      longitude: Joi.number(),
     }),
   },
 
@@ -126,16 +169,19 @@ function assert(obj, schemaName) {
 // `schemaName` refers to key in `conversion` object. It defines all
 // conversion functions.
 function convert(obj, schemaName) {
-  return _.reduce(obj, (memo, val, key) => {
-    var func = _getConversion(schemaName)
-    if (_.isFunction(func)) {
-      memo[key] = func(val);
-    } else {
-      memo[key] = val;
-    }
-    return memo;
-
-  }, {});
+  return _.reduce(
+    obj,
+    (memo, val, key) => {
+      var func = _getConversion(schemaName);
+      if (_.isFunction(func)) {
+        memo[key] = func(val);
+      } else {
+        memo[key] = val;
+      }
+      return memo;
+    },
+    {}
+  );
 }
 
 function _getConversion(name) {
@@ -162,9 +208,4 @@ function _throwJoiError(err) {
   throw newErr;
 }
 
-export {
-  assert,
-  convert,
-  common,
-  schemas
-};
+export { assert, convert, common, schemas };
