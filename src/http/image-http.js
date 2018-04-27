@@ -106,6 +106,7 @@ function postImage(req, res) {
           user: action.user,
           location: action.location,
           imagePath: uploadedImage.imageName,
+          text: action.text,
           city: action.city,
           client: req.client,
         })
