@@ -1,11 +1,18 @@
 [
   {
-    "title": "Lokál Hamburk",
-    "location": { "latitude": "50.093192", "longitude": "14.446804" },
-    "type": "RESTAURANT",
+    "title": "FUTURICE Summer party",
+    "location": { "latitude": "52.5058932", "longitude": "13.4325134" },
+    "type": "SUMMER PARTY",
     "image_url":
-      "https://b.zmtcdn.com/data/pictures/8/16507478/4e33618e15f1a43824bfd102a5865ef1_featured_v2.jpeg",
+      "https://spindlerklatt.com/wp-content/uploads/2017/03/2016_08_SpindlerKlatt_0507-1500x1000.jpg",
+    "subtitle": "Robot-Themed Summer Party \nKöpenickerstr. 16-17 \n10997 Berlin"
+  },
+  {
+    "title": "FUTURICE AI-event",
+    "location": { "latitude": "52.5365852", "longitude": "13.3355483" },
+    "type": "FUTUCAMP",
+    "image_url": "https://pbs.twimg.com/media/CDb6YC1WMAIUyPb.jpg",
     "subtitle":
-      "Enjoy carefully treated beer and freshly prepared homemade food. We draught the beer straight from the tanks via the shortest route into your pint glass, where it remains fresh until the last sip. We make real homemade meals, therefore our "
+      "Day event in Westhafen Event & Convention Center \nSektor B, Halle 1, Westhafenstr. 1 \n13353 Berlin"
   }
 ]
