@@ -333,6 +333,8 @@ function _actionToFeedObject(row, client) {
   }
 
   if (feedObj.type === 'IMAGE') {
+    feedObj.text = row.text;
+
     const imagePath = row['image_path'];
 
     if (process.env.DISABLE_IMGIX === 'true' || _.endsWith(imagePath, 'gif')) {

@@ -31,7 +31,7 @@ const schemas = {
       .min(0)
       .max(1)
       .optional(),
-    text: Joi.string().when('type', { is: Joi.valid('TEXT'), then: Joi.required() }),
+    text: Joi.string().optional(),
     eventId: common.primaryKeyId.when('type', { is: 'CHECK_IN_EVENT', then: Joi.required() }),
     city: common.primaryKeyId,
     feedItemId: common.primaryKeyId.when('type', { is: 'COMMENT', then: Joi.required() }),
