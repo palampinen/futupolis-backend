@@ -3,7 +3,7 @@
     "name": "Lunch",
     "locationName": "Small Hall - WECC",
     "startTime": "2017-06-08T13:00:00.000",
-    "endTime": "2017-06-08T14:30:00.000Z",
+    "endTime": "2017-06-08T14:30:00.000",
     "description": "Lunch in Small Hall.",
     "organizer": "Futurice",
     "contactDetails": "Minna",
@@ -14,10 +14,10 @@
     "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/piknik.jpg"
   },
   {
-    "name": "Opening and Welcoming Words ",
+    "name": "Opening and Welcoming Words",
     "locationName": "Big Hall - WECC",
     "startTime": "2017-06-08T14:30:00.000",
-    "endTime": "2017-06-08T14:45:00.000Z",
+    "endTime": "2017-06-08T14:45:00.000",
     "description": "Teemu Moisala Opens the AI-Event",
     "organizer": "Futurice",
     "contactDetails": "Teemu Moisala",
@@ -31,7 +31,7 @@
     "name": "Keynote - 'In search of Eutopia' - An inspirational dialogue",
     "locationName": "Big Hall - WECC",
     "startTime": "2017-06-08T14:45:00.000",
-    "endTime": "2017-06-08T15:10:00.000Z",
+    "endTime": "2017-06-08T15:10:00.000",
     "description":
       "Keynote by Daryl Weir & Annina Antinranta \n\nIn public debates, we often discuss AI through the extremes: AI as dystopia, AI as utopia. And in these discussions, the machine is either human-like figure with conscience and intelligence or intelligent logical creature with abstract look and feel. We tend to think the Machines will replace us, we long for Machines that will inspire us. In this dialogue we will invite you to the journey by presenting future extremes. However the truth lies somewhere in between. But what is our Eutopia, a good place? In this talk we leave the final judgement to the audience.",
     "organizer": "Futurice",
@@ -46,7 +46,7 @@
     "name": "Keynote - Connecting Intelligences - what we learned building an Inspirational AI",
     "locationName": "Big Hall - WECC",
     "startTime": "2017-06-08T15:10:00.000",
-    "endTime": "2017-06-08T15:45:00.000Z",
+    "endTime": "2017-06-08T15:45:00.000",
     "description":
       "Klaas Bollhoefer is founder and managing director of Birds on Mars GmbH, a Berlin-based company that enables organizations to develop strategies, structures, teams and applications at the connections of artificial and human intelligence. Klaas has been chief data scientist & evangelist with The unbelievable Machine Company (*um) for more than 6 years, pioneering data science in Germany, Europe and beyond. Always in-between, at the interfaces of business, IT, artificial intelligence and design he describes himself as a for-, side- and backward thinker. The time left is filled with lightning talks, guest lectures, program committee chairs and craft brewing. Klaas is a certified scrum master, design thinker, mediator and coach and will never stop being curious.\n\nRoman Lipski, a renowned painter from Berlin, gets inspired by his Artificial Muse, the first of its kind in the world of art. It is a new kind of symbiosis between man and machine, a dialogue that evolved over the last two years creating not just a new kind of art but step by step a new kind of artist. It is not Creative AI (as some call it), it is Inspirational AI (as we call it) and time to re-create and re-think the connections of human and artificial intelligence for the future. Not just in the arts, but everywhere. What if we could build an Artificial Muse for everyone? For our enterprises? What if we could redefine how we collaborate, communicate and co-create with intelligent services and devices? What if we could learn from and inspire each other? How about harmony instead of disruption and destruction? We took the first steps to find answers, started building an Artificial Enterprise Muse and now want to show and share our first findings.",
     "organizer": "Futurice",
@@ -67,7 +67,7 @@
     "name": "Break",
     "locationName": "Small Hall - WECC",
     "startTime": "2017-06-08T15:45:00.000",
-    "endTime": "2017-06-08T16:20:00.000Z",
+    "endTime": "2017-06-08T16:20:00.000",
     "description": "Food & Drinks in Small Hall.\n\n16:00 Supecell-case (10 min) by Claes Kaarni",
     "organizer": "Futurice",
     "contactDetails": "Claes Kaarni",
