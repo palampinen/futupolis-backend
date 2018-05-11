@@ -108,7 +108,7 @@
     },
     "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/fireside.jpg",
     "speakers":
-      "[{\"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--oswald.jpg\",\"name\": \"John Oswald\",\"title\": \"Futurice London\"},{\"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--dreser.jpg\",\"name\": \"Melanie Dreser\",\"title\": \"Futurice Berlin\"},{\"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--monica.jpg\",\"name\": \"Monica\",\"title\": \"Futurice Munich\"},{\"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--cecilia.jpg\",\"name\": \"Cecilia\",\"title\": \"Futurice Stockholm\"},{\"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--tugberk.jpg\",\"name\": \"Tuğberk Duman\",\"title\": \"Futurice Helsinki\"},{\"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--ermes.jpg\",\"name\": \"Miikka Ermes\",\"title\": \"Futurice Tampere\"},{\"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--niina.jpg\",\"name\": \"Niina Sauvolainen\",\"title\": \"Digital Transformation Lead at Finnair\"},{\"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--reil.jpg\",\"name\": \"Telina Reil\",\"title\": \"Head of Business Transformation at Allianz\"}]"
+      "[{\"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--oswald.jpg\",\"name\": \"John Oswald\",\"title\": \"Futurice London\"},{\"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--dreser.jpg\",\"name\": \"Melanie Dreser\",\"title\": \"Futurice Berlin\"},{\"name\": \"Monica\",\"title\": \"Futurice Munich\"},{\"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--cecilia.jpg\",\"name\": \"Cecilia\",\"title\": \"Futurice Stockholm\"},{\"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--tugberk.jpg\",\"name\": \"Tuğberk Duman\",\"title\": \"Futurice Helsinki\"},{\"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--ermes.jpg\",\"name\": \"Miikka Ermes\",\"title\": \"Futurice Tampere\"},{\"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--niina.jpg\",\"name\": \"Niina Sauvolainen\",\"title\": \"Digital Transformation Lead at Finnair\"},{\"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--reil.jpg\",\"name\": \"Telina Reil\",\"title\": \"Head of Business Transformation at Allianz\"}]"
   },
   {
     "name": "Break",
@@ -140,5 +140,99 @@
     "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/keynote.jpg",
     "speakers":
       "[{\"name\": \"Zeynep Tufekci\", \"title\": \"Techno-sociologist, professor, writer\", \"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--zeynep.jpg\"}]"
+  },
+  {
+    "name": "Break",
+    "locationName": "Small Hall - WECC",
+    "startTime": "2018-06-08T19:00:00.000",
+    "endTime": "2018-06-08T19:45:00.000",
+    "description":
+      "Wine & Beer in Small Hall.\n\n19:15 Social Robot (10 min) by Olli Ohls & Minja Axelsson",
+    "organizer": "Futurice",
+    "contactDetails": "Olli Ohls and Minja Axelsson",
+    "location": {
+      "latitude": "52.536582",
+      "longitude": "13.3355483"
+    },
+    "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/break.jpg"
+  },
+  {
+    "name": "Keynote by Syrjänen & Kaarni",
+    "locationName": "Big Hall - WECC",
+    "startTime": "2018-06-08T19:45:00.000",
+    "endTime": "2018-06-08T20:15:00.000",
+    "description": "Final Keynotes",
+    "organizer": "Futurice",
+    "contactDetails": "Tuomas Syrjänen & Claes Kaarni",
+    "location": {
+      "latitude": "52.536582",
+      "longitude": "13.3355483"
+    },
+    "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/keynote.jpg",
+    "speakers":
+      "[{\"name\": \"Tuomas Syrjänen\", \"title\": \"Former CEO, AI Enthusiast\", \"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--tuomas.jpg\"}, {\"name\": \"Claes Kaarni\", \"title\": \"Vice President\", \"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--kaarni.jpg\"}]"
+  },
+  {
+    "name": "Founders",
+    "locationName": "Big Hall - WECC",
+    "startTime": "2018-06-08T20:15:00.000",
+    "endTime": "2018-06-08T20:30:00.000",
+    "description": "Founders Speech",
+    "organizer": "Futurice",
+    "contactDetails": "Mikko Viikari",
+    "location": {
+      "latitude": "52.536582",
+      "longitude": "13.3355483"
+    },
+    "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/dj-open-mic.jpg",
+    "speakers":
+      "[{\"name\": \"Mikko Viikari\", \"title\": \"Senior Consultant\", \"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--viikari.jpg\"}]"
+  },
+  {
+    "name": "Closing Words",
+    "locationName": "Big Hall - WECC",
+    "startTime": "2018-06-08T20:30:00.000",
+    "endTime": "2018-06-08T21:00:00.000",
+    "description": "It's a wrap",
+    "organizer": "Futurice",
+    "contactDetails": "Eeva Raita & Nelli Myllylä",
+    "location": {
+      "latitude": "52.536582",
+      "longitude": "13.3355483"
+    },
+    "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/welcome_berlin.jpg",
+    "speakers":
+      "[{\"name\": \"Eeva Raita\", \"title\": \"Host, Head of Culture Advisory\", \"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--raita.jpg\"}, {\"name\": \"Nelli Myllylä\", \"title\": \"Host, LSC Growth Hacker\", \"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--myllyla.jpg\"}]"
+  },
+  {
+    "name": "Biergarten",
+    "locationName": "Somewhere in Berlin Area",
+    "startTime": "2018-06-09T12:00:00.000",
+    "endTime": "2018-06-09T15:00:00.000",
+    "description": "More info later",
+    "organizer": "Futurice",
+    "contactDetails": "Maiju",
+    "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/breakfast.jpg"
+  },
+  {
+    "name": "Soccer Tournament",
+    "locationName": "Somewher in Berlin",
+    "startTime": "2018-06-09T13:30:00.000",
+    "endTime": "2018-06-09T15:00:00.000",
+    "description": "Enjoy little sports activity before evening party.",
+    "organizer": "Futurice",
+    "contactDetails": "HP Heinajarvi",
+    "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/football.jpg"
+  },
+  {
+    "name": "Futurice Summer Party",
+    "locationName": "Spindler & Klatt GmbH",
+    "startTime": "2018-06-09T20:30:00.000",
+    "endTime": "2018-06-10T02:00:00.000",
+    "description":
+      "Address:\nKöpenickerstr. 16-17\n10997 Berlin\n\nBuffet open - sparking wine served",
+    "organizer": "Futurice",
+    "contactDetails": "Maiju",
+    "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/bileet.jpg"
   }
 ]
