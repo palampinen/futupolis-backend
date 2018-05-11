@@ -11,13 +11,7 @@
       "latitude": "52.536582",
       "longitude": "13.3355483"
     },
-    "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/piknik.jpg",
-    "speakers": [
-      {
-        "name": "Klaas Bollhoefer",
-        "image": "https://storage.googleapis.com/wappuapp/futupolis/avatar--klaas.jpg"
-      }
-    ]
+    "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/piknik.jpg"
   },
   {
     "name": "Opening and Welcoming Words",
@@ -61,13 +55,7 @@
       "latitude": "52.536582",
       "longitude": "13.3355483"
     },
-    "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/keynote.jpg",
-    "speakers": [
-      {
-        "name": "Klaas Bollhoefer",
-        "image": "https://storage.googleapis.com/wappuapp/futupolis/avatar--klaas.jpg"
-      }
-    ]
+    "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/keynote.jpg"
   },
   {
     "name": "Break",
