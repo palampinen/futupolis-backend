@@ -1,9 +1,9 @@
 import _ from 'lodash';
 const BPromise = require('bluebird');
-const {knex} = require('../util/database').connect();
-import {getDistance} from '../util/geometry';
+const { knex } = require('../util/database').connect();
+import { getDistance } from '../util/geometry';
 import moment from 'moment-timezone';
-import { getFeed } from "./feed-core";
+import { getFeed } from './feed-core';
 
 /**
  *
@@ -11,29 +11,25 @@ import { getFeed } from "./feed-core";
  * @param {number} opts.client.id
  */
 function getEventById(opts = {}) {
-  return getEvents(opts)
-    .then(events => {
-      if (_.isEmpty(events)) {
-        return undefined;
-      }
+  return getEvents(opts).then(events => {
+    if (_.isEmpty(events)) {
+      return undefined;
+    }
 
-      const getImagesPromise = getFeed({
-        eventId:       opts.eventId,
-        client:        opts.client,
-        type:          'IMAGE',
-        limit:         50,
-        includeSticky: false,
-      });
-
-      return BPromise.all([
-        _rowToEvent(events[0]),
-        getImagesPromise
-      ]).spread((event, images) => {
-        event.images = images;
-
-        return event;
-      });
+    const getImagesPromise = getFeed({
+      eventId: opts.eventId,
+      client: opts.client,
+      type: 'IMAGE',
+      limit: 50,
+      includeSticky: false,
     });
+
+    return BPromise.all([_rowToEvent(events[0]), getImagesPromise]).spread((event, images) => {
+      event.images = images;
+
+      return event;
+    });
+  });
 }
 
 function getEvents(opts) {
@@ -56,11 +52,12 @@ function getEvents(opts) {
       'fb_event_id',
       'attending_count',
       'radius',
+      'speakers',
     ])
     .whereRaw(where.sql, where.params)
     .orderBy('start_time', 'asc')
     .then(rows => _.map(rows, _rowToEvent));
-};
+}
 
 function setAttendingCount(facebookEventId, attendingCount) {
   return knex.transaction(trx =>
@@ -71,11 +68,7 @@ function setAttendingCount(facebookEventId, attendingCount) {
 }
 
 function _getWhereClause(filters) {
-  let whereClauses = [
-    'show = TRUE',
-    'end_time IS NOT NULL',
-    'start_time IS NOT NULL',
-  ];
+  let whereClauses = ['show = TRUE', 'end_time IS NOT NULL', 'start_time IS NOT NULL'];
   let params = [];
 
   if (filters.city) {
@@ -89,7 +82,7 @@ function _getWhereClause(filters) {
   }
 
   if (!filters.showPast) {
-    whereClauses.push('end_time > CURRENT_TIMESTAMP')
+    whereClauses.push('end_time > CURRENT_TIMESTAMP');
   }
 
   return {
@@ -104,22 +97,23 @@ function _formatDateTime(dateString) {
 
 function _rowToEvent(row) {
   return {
-    id:             row['id'],
-    name:           row['name'],
-    locationName:   row['location_name'],
-    startTime:      _formatDateTime(row['start_time'].toISOString()),
-    endTime:        _formatDateTime(row['end_time'].toISOString()),
-    description:    row['description'],
-    organizer:      row['organizer'],
+    id: row['id'],
+    name: row['name'],
+    locationName: row['location_name'],
+    startTime: _formatDateTime(row['start_time'].toISOString()),
+    endTime: _formatDateTime(row['end_time'].toISOString()),
+    description: row['description'],
+    organizer: row['organizer'],
     contactDetails: row['contact_details'],
-    teemu:          row['teemu'],
-    coverImage:     row['cover_image'],
-    city:           row['city'],
-    fbEventId:      row['fb_event_id'],
+    teemu: row['teemu'],
+    coverImage: row['cover_image'],
+    city: row['city'],
+    fbEventId: row['fb_event_id'],
     attendingCount: row['attending_count'],
-    radius:         row['radius'],
+    radius: row['radius'],
+    speakers: row['speakers'],
     location: {
-      latitude:  _.get(row, 'location.y', null),
+      latitude: _.get(row, 'location.y', null),
       longitude: _.get(row, 'location.x', null),
     },
   };
@@ -129,10 +123,12 @@ function _rowToEvent(row) {
 // DOES NOT check if user has already checked in, thus the result
 // is not a guarantee of a successfull check in.
 function isValidCheckIn(action) {
-  return knex('events').select('*').where('id', '=', action.eventId)
+  return knex('events')
+    .select('*')
+    .where('id', '=', action.eventId)
     .then(events => {
       if (events.length === 0) {
-        let err = new Error(`No such event id: ${ action.eventId }`);
+        let err = new Error(`No such event id: ${action.eventId}`);
         err.status = 404;
         throw err;
       } else if (events.length > 1) {
@@ -148,7 +144,6 @@ function isValidCheckIn(action) {
       return event;
     })
     .then(event => {
-
       if (!event.location) {
         throw new Error('Event has no location coordinates');
       }
@@ -170,23 +165,14 @@ function isValidCheckIn(action) {
 }
 
 function _eventOnGoing(event) {
-  return moment().utc().isBetween(
-    moment(event.start_time).utc(),
-    moment(event.end_time).utc()
-  );
+  return moment()
+    .utc()
+    .isBetween(moment(event.start_time).utc(), moment(event.end_time).utc());
 }
 
 function _userInVicinity(actionLocation, eventLocation, eventRadius) {
-  const distanceToEvent = getDistance(
-      actionLocation,
-      eventLocation,
-    );
+  const distanceToEvent = getDistance(actionLocation, eventLocation);
   return distanceToEvent <= eventRadius;
 }
 
-export {
-  getEventById,
-  getEvents,
-  setAttendingCount,
-  isValidCheckIn
-};
+export { getEventById, getEvents, setAttendingCount, isValidCheckIn };
