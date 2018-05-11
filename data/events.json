@@ -1,268 +1,66 @@
 [
-{
-  "name": "Coming To Prague",
-  "locationName": "Hilton Prague",
-  "startTime": "2017-06-08T17:35:00.000Z",
-  "endTime": "2017-06-09T09:35:00.000Z",
-  "description": "You arrive to summery Prague in Thursday or Friday. We are staying in Hilton Prague. \n\nHilton Prague\n• 25-minute drive from Airport\n• Central location, within walking distance of main attractions\n• Breakfast\n• Health Club & Spa\n• Three restaurants and two bars\n• Sky Bar & Lounge\n• WiFi in public areas\n\n\nBreakfast in Hotel\n6:00 – 10:30 on FRI\n06:00 – 11:00 on SAT and SUN\n\nGym & Spa\nWe have free access to Hilton Prague Gym and Spa. Amenities include an indoor pool, whirlpool, sauna, steam room, and fitness center.",
-  "organizer": "Futurice",
-  "contactDetails": "Kristiina",
-  "location": {
-    "latitude": "50.093277",
-    "longitude": "14.4376183"
+  {
+    "name": "Lunch",
+    "locationName": "Small Hall - WECC",
+    "startTime": "2017-06-08T13:00:00.000",
+    "endTime": "2017-06-08T14:30:00.000Z",
+    "description": "Lunch in Small Hall.",
+    "organizer": "Futurice",
+    "contactDetails": "Minna",
+    "location": {
+      "latitude": "52.536582",
+      "longitude": "13.3355483"
+    },
+    "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/piknik.jpg"
   },
-  "coverImage": "https://media-cdn.tripadvisor.com/media/photo-s/0a/f8/12/68/hilton-prague-exterior.jpg"
-},
-{
-  "name": "Breakfast",
-  "locationName": "Hilton Prague",
-  "startTime": "2017-06-09T06:00:00.000Z",
-  "endTime": "2017-06-09T10:30:00.000Z",
-  "description": "Free breakfast for all Futuriceans",
-  "organizer": "Futurice",
-  "contactDetails": "Kristiina",
-  "location": {
-    "latitude": "50.093277",
-    "longitude": "14.4376183"
+  {
+    "name": "Opening and Welcoming Words ",
+    "locationName": "Big Hall - WECC",
+    "startTime": "2017-06-08T14:30:00.000",
+    "endTime": "2017-06-08T14:45:00.000Z",
+    "description": "Teemu Moisala Opens the AI-Event",
+    "organizer": "Futurice",
+    "contactDetails": "Teemu Moisala",
+    "location": {
+      "latitude": "52.536582",
+      "longitude": "13.3355483"
+    },
+    "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/welcome_words.jpg"
   },
-  "coverImage": "https://images.unsplash.com/photo-1450862479751-84eeaf2fcca4?dpr=1&auto=compress,format&fit=crop&w=600&h=400&q=80&cs=tinysrgb&crop=&bg="
-},
-{
-  "name": "Lunch",
-  "locationName": "La Fabrika - Restaurant",
-  "startTime": "2017-06-09T11:00:00.000Z",
-  "endTime": "2017-06-09T13:00:00.000Z",
-  "description": "We are starting with lunch.",
-  "organizer": "Futurice",
-  "contactDetails": "Kristiina",
-  "location": {
-    "latitude": "50.1038408",
-    "longitude": "14.4503703"
+  {
+    "name": "Keynote - 'In search of Eutopia' - An inspirational dialogue",
+    "locationName": "Big Hall - WECC",
+    "startTime": "2017-06-08T14:45:00.000",
+    "endTime": "2017-06-08T15:10:00.000Z",
+    "description":
+      "Keynote by Daryl Weir & Annina Antinranta \n\nIn public debates, we often discuss AI through the extremes: AI as dystopia, AI as utopia. And in these discussions, the machine is either human-like figure with conscience and intelligence or intelligent logical creature with abstract look and feel. We tend to think the Machines will replace us, we long for Machines that will inspire us. In this dialogue we will invite you to the journey by presenting future extremes. However the truth lies somewhere in between. But what is our Eutopia, a good place? In this talk we leave the final judgement to the audience.",
+    "organizer": "Futurice",
+    "contactDetails": "Daryl Weir & Annina Antinranta",
+    "location": {
+      "latitude": "52.536582",
+      "longitude": "13.3355483"
+    },
+    "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/keynote.jpg"
   },
-  "coverImage": "https://static1.squarespace.com/static/53162615e4b08f2413caa7c2/t/571da617d51cd4f1ca29ec3d/1470308449044/traditional-czech-food?format=1500w"
-},
-{
-  "name": "Welcome Words",
-  "locationName": "La Fabrika - Main Stage",
-  "startTime": "2017-06-09T13:45:00.000Z",
-  "endTime": "2017-06-09T14:00:00.000Z",
-  "description": "Fututrip 2017",
-  "organizer": "Futurice",
-  "contactDetails": "Kristiina",
-  "location": {
-    "latitude": "50.1038408",
-    "longitude": "14.4503703"
-  },
-  "coverImage": "https://raw.githubusercontent.com/futurice/prahapp-client/master/assets/prague/futubohemia/chilicorn.png"
-},
-{
-  "name": "Keynote by Mark Gallagher",
-  "locationName": "La Fabrika - Main Stage",
-  "startTime": "2017-06-09T14:00:00.000Z",
-  "endTime": "2017-06-09T14:45:00.000Z",
-  "description": "Keynote by Mark Gallagher",
-  "organizer": "Futurice",
-  "contactDetails": "Kristiina",
-  "location": {
-    "latitude": "50.1038408",
-    "longitude": "14.4503703"
-  },
-  "coverImage": "https://i.ytimg.com/vi/FCQ_sPodSwA/maxresdefault.jpg"
-},
-{
-  "name": "Break",
-  "locationName": "La Fabrika",
-  "startTime": "2017-06-09T14:45:00.000Z",
-  "endTime": "2017-06-09T15:00:00.000Z",
-  "description": "Small break",
-  "organizer": "Futurice",
-  "contactDetails": "Kristiina",
-  "location": {
-    "latitude": "50.1038408",
-    "longitude": "14.4503703"
-  },
-  "coverImage": "https://images.unsplash.com/photo-1494398138790-6f0b412da3e6?dpr=1&auto=format&fit=crop&w=1199&h=879&q=80&cs=tinysrgb&crop=&bg="
-},
-{
-  "name": "Case Studies 1",
-  "locationName": "La Fabrika - Workshops",
-  "startTime": "2017-06-09T15:00:00.000Z",
-  "endTime": "2017-06-09T15:45:00.000Z",
-  "description": "Workshopping",
-  "organizer": "Futurice",
-  "contactDetails": "Kristiina",
-  "location": {
-    "latitude": "50.1038408",
-    "longitude": "14.4503703"
-  },
-  "coverImage": "https://images.unsplash.com/1/bag-and-hands.jpg?dpr=1&auto=format&fit=crop&w=1199&h=803&q=80&cs=tinysrgb&crop=&bg="
-},
-{
-  "name": "Case Studies 2",
-  "locationName": "La Fabrika - Workshops",
-  "startTime": "2017-06-09T15:45:00.000Z",
-  "endTime": "2017-06-09T16:45:00.000Z",
-  "description": "Workshopping continues",
-  "organizer": "Futurice",
-  "contactDetails": "Kristiina",
-  "location": {
-    "latitude": "50.1038408",
-    "longitude": "14.4503703"
-  },
-  "coverImage": "https://images.unsplash.com/1/bag-and-hands.jpg?dpr=1&auto=format&fit=crop&w=1199&h=803&q=80&cs=tinysrgb&crop=&bg="
-},
-{
-  "name": "Change to Main Stage",
-  "locationName": "La Fabrika - Main Stage",
-  "startTime": "2017-06-09T16:45:00.000Z",
-  "endTime": "2017-06-09T17:00:00.100Z",
-  "description": "Let's move it to main stage",
-  "organizer": "Futurice",
-  "contactDetails": "Kristiina",
-  "location": {
-    "latitude": "50.1038408",
-    "longitude": "14.4503703"
-  },
-  "coverImage": "https://flockler.com/thumbs/1992/20130607-dsc_03641_s830x0_q80_noupscale.jpg"
-},
-{
-  "name": "Keynote: LSC next steps",
-  "locationName": "La Fabrika - Main Stage",
-  "startTime": "2017-06-09T17:00:00.200Z",
-  "endTime": "2017-06-09T18:00:00.000Z",
-  "description": "Keynote: LSC next steps",
-  "organizer": "Futurice",
-  "contactDetails": "Kristiina",
-  "location": {
-    "latitude": "50.1038408",
-    "longitude": "14.4503703"
-  },
-  "coverImage": "https://flockler.com/thumbs/2660/lsc_s1200x630_noupscale.jpg"
-},
-{
-  "name": "Instructions",
-  "locationName": "La Fabrika - Main Stage",
-  "startTime": "2017-06-09T18:00:00.000Z",
-  "endTime": "2017-06-09T18:15:00.000Z",
-  "description": "Instructions for next steps",
-  "organizer": "Futurice",
-  "contactDetails": "Kristiina",
-  "location": {
-    "latitude": "50.1038408",
-    "longitude": "14.4503703"
-  },
-  "coverImage": "https://images.unsplash.com/photo-1452690700222-8a2a1a109f4c?dpr=1&auto=compress,format&fit=crop&w=376&h=249&q=80&cs=tinysrgb&crop=&bg="
-},
-{
-  "name": "Breakfast",
-  "locationName": "Hilton Prague",
-  "startTime": "2017-06-10T06:00:00.000Z",
-  "endTime": "2017-06-10T11:00:00.000Z",
-  "description": "Free breakfast for all Futuriceans",
-  "organizer": "Futurice",
-  "contactDetails": "Kristiina",
-  "location": {
-    "latitude": "50.093277",
-    "longitude": "14.4376183"
-  },
-  "coverImage": "https://images.unsplash.com/photo-1450862479751-84eeaf2fcca4?dpr=1&auto=compress,format&fit=crop&w=600&h=400&q=80&cs=tinysrgb&crop=&bg="
-},
-{
-  "name": "Activities",
-  "locationName": "Prague",
-  "startTime": "2017-06-10T11:00:00.000Z",
-  "endTime": "2017-06-10T15:00:00.000Z",
-  "description": "All walk activities starts and ends to the Hilton Hotel. \n\n\n\nChill out walk\nAn easy, chilled out walk that includes a bit of the Old town, but most importantly a couple of relaxed beers in the Letná park that overlooks the city center of Prague.\n\n\n\nShopping / urban culture walk\nAn easy walk that goes through the former industrial part of Prague and takes the people to do some shopping in Vnitroblock, a cool shopping area comprised of designer and handcraft-oriented shops.\n\n\n\nBeer walk\nA very easy walk for beer lovers and those, who like to eat 'beer' dishes.",
-  "organizer": "Futurice",
-  "contactDetails": "Kristiina",
-  "location": {
-    "latitude": "50.093277",
-    "longitude": "14.4376183"
-  },
-  "coverImage": "https://raw.githubusercontent.com/futurice/prahapp-site/master/img/event-activities.jpg"
-},
-{
-  "name": "Activity - Football match",
-  "locationName": "Na Františku Sports Centre",
-  "startTime": "2017-06-10T12:00:01.000Z",
-  "endTime": "2017-06-10T15:00:01.000Z",
-  "description": "Ruthless and sweaty football match in short walking distance from Hilton Hotel.\n\nYou can sign up for a player or as a fan. Notice that in that field you cant play with football shoes and you have play with smooth soles. So keep this in mind when doing the packing.\n\nThe match starts at 13.00 and we have the field until 15.00.",
-  "organizer": "Futurice",
-  "contactDetails": "H-P",
-  "location": {
-    "latitude": "50.0926840",
-    "longitude": "14.4220390"
-  },
-  "coverImage": "https://images.unsplash.com/photo-1494778696781-8f23fd5553c4?dpr=1&auto=compress,format&fit=crop&w=800&h=500&q=80&cs=tinysrgb&crop=&bg="
-},
-{
-  "name": "Dinner",
-  "locationName": "Mánes Building",
-  "startTime": "2017-06-10T18:00:00.000Z",
-  "endTime": "2017-06-10T21:00:00.000Z",
-  "description": "Dinner in Mánes before Summer Party. \n\nMasarykovo nábřeží 250/1\n110 00 Praha 1",
-  "organizer": "Futurice",
-  "contactDetails": "Kristiina",
-  "location": {
-    "latitude": "50.0775102",
-    "longitude": "14.4119284"
-  },
-  "coverImage": "https://media-cdn.tripadvisor.com/media/photo-s/09/40/9c/21/manes-group.jpg"
-},
-{
-  "name": "Summer Party",
-  "locationName": "Mánes Building",
-  "startTime": "2017-06-10T18:00:01.000Z",
-  "endTime": "2017-06-11T02:00:00.000Z",
-  "description": "The party starts at 18.00 in Mánes and ends at 2 am.\n\nAs you have seen this year's theme is #Futubohemia. If you wish to dress up by the theme, you are more than welcome to do so. We have ordered some props to the venue. We will have dinner, drinks and since we don't want you to feel any hunger, also a midnight snack will be provided :)\n\nInspiration for the Futubohemia was a Czech Art Nouveau painter and artist Alphonse Mucha. Join us for the era of the Belle Époque (1987-1914) period of Western European history characterized by optimism, regional peace, economic prosperity, strength of colonial empires and technological, scientific and cultural innovations. Enjoy the party like Futuriceans normally do!",
-  "organizer": "Futurice",
-  "contactDetails": "Kristiina",
-  "location": {
-    "latitude": "50.0775102",
-    "longitude": "14.4119284"
-  },
-  "coverImage": "https://raw.githubusercontent.com/futurice/prahapp-site/master/img/event-summer-party.jpg"
-},
-{
-  "name": "Night Snack",
-  "locationName": "Mánes Building",
-  "startTime": "2017-06-10T23:00:00.000Z",
-  "endTime": "2017-06-11T01:00:00.000Z",
-  "description": "Everybody must be hungry by now. Prepare yourself for the rest of the night!",
-  "organizer": "Futurice",
-  "contactDetails": "Kristiina",
-  "location": {
-    "latitude": "50.0775102",
-    "longitude": "14.4119284"
-  },
-  "coverImage": "https://images.unsplash.com/photo-1438001394654-f4837ea93ea2?dpr=1&auto=compress,format&fit=crop&w=376&h=251&q=80&cs=tinysrgb&crop=&bg="
-},
-{
-  "name": "After Party?",
-  "locationName": "Nebe Cocktail & Music Bar Celnice",
-  "startTime": "2017-06-11T02:00:00.000Z",
-  "endTime": "2017-06-11T05:00:00.000Z",
-  "description": "Cocktail bar which is open until 05:00! It takes only 5 minutes by walk from Summer Party.\n\nAddress: Křemencova 10, 110 00 Praha 1-Nové Město, Czechia",
-  "organizer": "Futurice",
-  "contactDetails": "Kristiina",
-  "location": {
-    "latitude": "50.0786620",
-    "longitude": "14.4174420"
-  },
-  "coverImage": "https://images.unsplash.com/photo-1495229159533-c7fcb0f1f014?dpr=1&auto=compress,format&fit=crop&w=800&h=500&q=80&cs=tinysrgb&crop=1&bg="
-},
-{
-  "name": "Breakfast",
-  "locationName": "Hilton Prague",
-  "startTime": "2017-06-11T06:00:00.100Z",
-  "endTime": "2017-06-11T11:00:00.100Z",
-  "description": "Free breakfast for all Futuriceans",
-  "organizer": "Futurice",
-  "contactDetails": "Kristiina",
-  "location": {
-    "latitude": "50.093277",
-    "longitude": "14.4376183"
-  },
-  "coverImage": "https://images.unsplash.com/photo-1450862479751-84eeaf2fcca4?dpr=1&auto=compress,format&fit=crop&w=600&h=400&q=80&cs=tinysrgb&crop=&bg="
-}
+  {
+    "name": "Keynote - Connecting Intelligences - what we learned building an Inspirational AI",
+    "locationName": "Big Hall - WECC",
+    "startTime": "2017-06-08T15:10:00.000",
+    "endTime": "2017-06-08T15:45:00.000Z",
+    "description":
+      "Klaas Bollhoefer is founder and managing director of Birds on Mars GmbH, a Berlin-based company that enables organizations to develop strategies, structures, teams and applications at the connections of artificial and human intelligence. Klaas has been chief data scientist & evangelist with The unbelievable Machine Company (*um) for more than 6 years, pioneering data science in Germany, Europe and beyond. Always in-between, at the interfaces of business, IT, artificial intelligence and design he describes himself as a for-, side- and backward thinker. The time left is filled with lightning talks, guest lectures, program committee chairs and craft brewing. Klaas is a certified scrum master, design thinker, mediator and coach and will never stop being curious.\n\nRoman Lipski, a renowned painter from Berlin, gets inspired by his Artificial Muse, the first of its kind in the world of art. It is a new kind of symbiosis between man and machine, a dialogue that evolved over the last two years creating not just a new kind of art but step by step a new kind of artist. It is not Creative AI (as some call it), it is Inspirational AI (as we call it) and time to re-create and re-think the connections of human and artificial intelligence for the future. Not just in the arts, but everywhere. What if we could build an Artificial Muse for everyone? For our enterprises? What if we could redefine how we collaborate, communicate and co-create with intelligent services and devices? What if we could learn from and inspire each other? How about harmony instead of disruption and destruction? We took the first steps to find answers, started building an Artificial Enterprise Muse and now want to show and share our first findings.",
+    "organizer": "Futurice",
+    "contactDetails": "Daryl Weir & Annina Antinranta",
+    "location": {
+      "latitude": "52.536582",
+      "longitude": "13.3355483"
+    },
+    "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/keynote.jpg",
+    "speakers": [
+      {
+        "name": "Klaas Bollhoefer",
+        "image": "https://storage.googleapis.com/wappuapp/futupolis/avatar--klaas.jpg"
+      }
+    ]
+  }
 ]
