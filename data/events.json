@@ -62,5 +62,19 @@
         "image": "https://storage.googleapis.com/wappuapp/futupolis/avatar--klaas.jpg"
       }
     ]
+  },
+  {
+    "name": "Break",
+    "locationName": "Small Hall - WECC",
+    "startTime": "2017-06-08T15:45:00.000",
+    "endTime": "2017-06-08T16:20:00.000Z",
+    "description": "Food & Drinks in Small Hall.\n\n16:00 Supecell-case (10 min) by Claes Kaarni",
+    "organizer": "Futurice",
+    "contactDetails": "Claes Kaarni",
+    "location": {
+      "latitude": "52.536582",
+      "longitude": "13.3355483"
+    },
+    "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/break.jpg"
   }
 ]
