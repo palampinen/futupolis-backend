@@ -51,7 +51,6 @@ function getEvents(opts) {
       'city_id AS city',
       'fb_event_id',
       'attending_count',
-      'radius',
       'speakers',
     ])
     .whereRaw(where.sql, where.params)
@@ -110,7 +109,6 @@ function _rowToEvent(row) {
     city: row['city'],
     fbEventId: row['fb_event_id'],
     attendingCount: row['attending_count'],
-    radius: row['radius'],
     speakers: row['speakers'],
     location: {
       latitude: _.get(row, 'location.y', null),

@@ -50,12 +50,14 @@
     "description":
       "Klaas Bollhoefer is founder and managing director of Birds on Mars GmbH, a Berlin-based company that enables organizations to develop strategies, structures, teams and applications at the connections of artificial and human intelligence. Klaas has been chief data scientist & evangelist with The unbelievable Machine Company (*um) for more than 6 years, pioneering data science in Germany, Europe and beyond. Always in-between, at the interfaces of business, IT, artificial intelligence and design he describes himself as a for-, side- and backward thinker. The time left is filled with lightning talks, guest lectures, program committee chairs and craft brewing. Klaas is a certified scrum master, design thinker, mediator and coach and will never stop being curious.\n\nRoman Lipski, a renowned painter from Berlin, gets inspired by his Artificial Muse, the first of its kind in the world of art. It is a new kind of symbiosis between man and machine, a dialogue that evolved over the last two years creating not just a new kind of art but step by step a new kind of artist. It is not Creative AI (as some call it), it is Inspirational AI (as we call it) and time to re-create and re-think the connections of human and artificial intelligence for the future. Not just in the arts, but everywhere. What if we could build an Artificial Muse for everyone? For our enterprises? What if we could redefine how we collaborate, communicate and co-create with intelligent services and devices? What if we could learn from and inspire each other? How about harmony instead of disruption and destruction? We took the first steps to find answers, started building an Artificial Enterprise Muse and now want to show and share our first findings.",
     "organizer": "Futurice",
-    "contactDetails": "Daryl Weir & Annina Antinranta",
+    "contactDetails": "Klaas Bollhoefer",
     "location": {
       "latitude": "52.536582",
       "longitude": "13.3355483"
     },
-    "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/keynote.jpg"
+    "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/keynote.jpg",
+    "speakers":
+      "[{\"name\": \"Klaas Bollhoefer\", \"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--klaas.jpg\"}]"
   },
   {
     "name": "Break",
