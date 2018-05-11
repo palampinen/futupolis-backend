@@ -30,7 +30,7 @@
       "[{\"name\": \"Teemu Moisala\", \"title\": \"CEO\", \"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--moisala.jpg\"}]"
   },
   {
-    "name": "Keynote - Daryl Weir & Annina Antinranta",
+    "name": "Keynote by Weir & Antinranta",
     "locationName": "Big Hall - WECC",
     "startTime": "2018-06-08T14:45:00.000",
     "endTime": "2018-06-08T15:10:00.000",
@@ -47,7 +47,7 @@
       "[{\"name\": \"Daryl Weir\", \"title\": \"Senior data Scientist\", \"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--daryl.jpg\"}, {\"name\": \"Annina Antinranta\", \"title\": \"Design Director\", \"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--annina.jpg\"}]"
   },
   {
-    "name": "Keynote - Klaas Bollhoefer",
+    "name": "Keynote by Klaas Bollhoefer",
     "locationName": "Big Hall - WECC",
     "startTime": "2018-06-08T15:10:00.000",
     "endTime": "2018-06-08T15:45:00.000",
@@ -78,7 +78,7 @@
     "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/break.jpg"
   },
   {
-    "name": "Keynote - Duman & Sauvolainen",
+    "name": "Keynote by Duman & Sauvolainen",
     "locationName": "Big Hall - WECC",
     "startTime": "2018-06-08T16:20:00.000",
     "endTime": "2018-06-08T16:45:00.000",
@@ -93,5 +93,52 @@
     "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/keynote.jpg",
     "speakers":
       "[{\"name\": \"Tuğberk Duman\", \"title\": \"Biometrics Expert, Leads Innovation at Futurice\", \"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--tugberk.jpg\"}, {\"name\": \"Niina Sauvolainen\", \"title\": \"Digital Transformation Lead at Finnair\", \"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--niina.jpg\"}]"
+  },
+  {
+    "name": "Fireside",
+    "locationName": "Big Hall - WECC",
+    "startTime": "2018-06-08T16:45:00.000",
+    "endTime": "2018-06-08T17:30:00.000",
+    "description": "Fireside panel moderated by Klaas Bollhoefer",
+    "organizer": "Futurice",
+    "contactDetails": "Klaas Bollhoefern",
+    "location": {
+      "latitude": "52.536582",
+      "longitude": "13.3355483"
+    },
+    "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/fireside.jpg",
+    "speakers":
+      "[[{\"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--oswald.jpg\",\"name\": \"John Oswald\",\"title\": \"Futurice London\"},{\"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--dreser.jpg\",\"name\": \"Melanie Dreser\",\"title\": \"Futurice Berlin\"},{\"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--monica.jpg\",\"name\": \"Monica\",\"title\": \"Futurice Munich\"},{\"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--cecilia.jpg\",\"name\": \"Cecilia\",\"title\": \"Futurice Stockholm\"},{\"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--tugberk.jpg\",\"name\": \"Tuğberk Duman\",\"title\": \"Futurice Helsinki\"},{\"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--ermes.jpg\",\"name\": \"Miikka Ermes\",\"title\": \"Futurice Tampere\"},{\"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--niina.jpg\",\"name\": \"Niina Sauvolainen\",\"title\": \"Digital Transformation Lead at Finnair\"},{\"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--reil.jpg\",\"name\": \"Telina Reil\",\"title\": \"Head of Business Transformation at Allianz\"}]"
+  },
+  {
+    "name": "Break",
+    "locationName": "Small Hall - WECC",
+    "startTime": "2018-06-08T17:30:00.000",
+    "endTime": "2018-06-08T18:10:00.000",
+    "description": "Food & Drinks in Small Hall.\n\n17:45 Customer-case (10 min)",
+    "organizer": "Futurice",
+    "contactDetails": "Claes Kaarni",
+    "location": {
+      "latitude": "52.536582",
+      "longitude": "13.3355483"
+    },
+    "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/break.jpg"
+  },
+  {
+    "name": "Keynote by Zeynep Tufekci",
+    "locationName": "Big Hall - WECC",
+    "startTime": "2018-06-08T18:10:00.000",
+    "endTime": "2018-06-08T19:45:00.000",
+    "description":
+      "Techno-sociologist Zeynep Tufekci is an internationally recognised authority on the interactions between technology and social, cultural, and political dynamics. She has special expertise in how social change movements are using social media and on the social and moral implications of how we use big data and algorithms to make decisions. The author of Twitter and Tear Gas: The Power and Fragility of Networked Protests, Zeynep Tufekci is an associate professor at the University of North Carolina,Chapel Hill, and a monthly contributing opinion writer for the New York Times. Zeynep is also a faculty associate at the Berkman Klein Center for Internet and Society at Harvard University and an affiliate appointment in the Department of Sociology at UNC.",
+    "organizer": "Futurice",
+    "contactDetails": "Zeynep Tufekci",
+    "location": {
+      "latitude": "52.536582",
+      "longitude": "13.3355483"
+    },
+    "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/keynote.jpg",
+    "speakers":
+      "[{\"name\": \"Zeynep Tufekci\", \"title\": \"Techno-sociologist, professor, writer\", \"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--zeynep.jpg\"}]"
   }
 ]
