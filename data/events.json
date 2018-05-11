@@ -2,8 +2,8 @@
   {
     "name": "Lunch",
     "locationName": "Small Hall - WECC",
-    "startTime": "2017-06-08T13:00:00.000",
-    "endTime": "2017-06-08T14:30:00.000",
+    "startTime": "2018-06-08T13:00:00.000",
+    "endTime": "2018-06-08T14:30:00.000",
     "description": "Lunch in Small Hall.",
     "organizer": "Futurice",
     "contactDetails": "Minna",
@@ -16,8 +16,8 @@
   {
     "name": "Opening and Welcoming Words",
     "locationName": "Big Hall - WECC",
-    "startTime": "2017-06-08T14:30:00.000",
-    "endTime": "2017-06-08T14:45:00.000",
+    "startTime": "2018-06-08T14:30:00.000",
+    "endTime": "2018-06-08T14:45:00.000",
     "description": "Teemu Moisala Opens the AI-Event",
     "organizer": "Futurice",
     "contactDetails": "Teemu Moisala",
@@ -25,30 +25,34 @@
       "latitude": "52.536582",
       "longitude": "13.3355483"
     },
-    "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/welcome_words.jpg"
+    "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/welcome_words.jpg",
+    "speakers":
+      "[{\"name\": \"Teemu Moisala\", \"title\": \"CEO\", \"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--moisala.jpg\"}]"
   },
   {
-    "name": "Keynote - 'In search of Eutopia' - An inspirational dialogue",
+    "name": "Keynote - Daryl Weir & Annina Antinranta",
     "locationName": "Big Hall - WECC",
-    "startTime": "2017-06-08T14:45:00.000",
-    "endTime": "2017-06-08T15:10:00.000",
+    "startTime": "2018-06-08T14:45:00.000",
+    "endTime": "2018-06-08T15:10:00.000",
     "description":
-      "Keynote by Daryl Weir & Annina Antinranta \n\nIn public debates, we often discuss AI through the extremes: AI as dystopia, AI as utopia. And in these discussions, the machine is either human-like figure with conscience and intelligence or intelligent logical creature with abstract look and feel. We tend to think the Machines will replace us, we long for Machines that will inspire us. In this dialogue we will invite you to the journey by presenting future extremes. However the truth lies somewhere in between. But what is our Eutopia, a good place? In this talk we leave the final judgement to the audience.",
+      "'In search of Eutopia' - An inspirational dialogue \n\nIn public debates, we often discuss AI through the extremes: AI as dystopia, AI as utopia. And in these discussions, the machine is either human-like figure with conscience and intelligence or intelligent logical creature with abstract look and feel. We tend to think the Machines will replace us, we long for Machines that will inspire us. In this dialogue we will invite you to the journey by presenting future extremes. However the truth lies somewhere in between. But what is our Eutopia, a good place? In this talk we leave the final judgement to the audience.",
     "organizer": "Futurice",
     "contactDetails": "Daryl Weir & Annina Antinranta",
     "location": {
       "latitude": "52.536582",
       "longitude": "13.3355483"
     },
-    "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/keynote.jpg"
+    "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/keynote.jpg",
+    "speakers":
+      "[{\"name\": \"Daryl Weir\", \"title\": \"Senior data Scientist\", \"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--daryl.jpg\"}, {\"name\": \"Annina Antinranta\", \"title\": \"Design Director\", \"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--annina.jpg\"}]"
   },
   {
-    "name": "Keynote - Connecting Intelligences - what we learned building an Inspirational AI",
+    "name": "Keynote - Klaas Bollhoefer",
     "locationName": "Big Hall - WECC",
-    "startTime": "2017-06-08T15:10:00.000",
-    "endTime": "2017-06-08T15:45:00.000",
+    "startTime": "2018-06-08T15:10:00.000",
+    "endTime": "2018-06-08T15:45:00.000",
     "description":
-      "Klaas Bollhoefer is founder and managing director of Birds on Mars GmbH, a Berlin-based company that enables organizations to develop strategies, structures, teams and applications at the connections of artificial and human intelligence. Klaas has been chief data scientist & evangelist with The unbelievable Machine Company (*um) for more than 6 years, pioneering data science in Germany, Europe and beyond. Always in-between, at the interfaces of business, IT, artificial intelligence and design he describes himself as a for-, side- and backward thinker. The time left is filled with lightning talks, guest lectures, program committee chairs and craft brewing. Klaas is a certified scrum master, design thinker, mediator and coach and will never stop being curious.\n\nRoman Lipski, a renowned painter from Berlin, gets inspired by his Artificial Muse, the first of its kind in the world of art. It is a new kind of symbiosis between man and machine, a dialogue that evolved over the last two years creating not just a new kind of art but step by step a new kind of artist. It is not Creative AI (as some call it), it is Inspirational AI (as we call it) and time to re-create and re-think the connections of human and artificial intelligence for the future. Not just in the arts, but everywhere. What if we could build an Artificial Muse for everyone? For our enterprises? What if we could redefine how we collaborate, communicate and co-create with intelligent services and devices? What if we could learn from and inspire each other? How about harmony instead of disruption and destruction? We took the first steps to find answers, started building an Artificial Enterprise Muse and now want to show and share our first findings.",
+      "Connecting Intelligences - what we learned building an Inspirational AI\n\nKlaas Bollhoefer is founder and managing director of Birds on Mars GmbH, a Berlin-based company that enables organizations to develop strategies, structures, teams and applications at the connections of artificial and human intelligence. Klaas has been chief data scientist & evangelist with The unbelievable Machine Company (*um) for more than 6 years, pioneering data science in Germany, Europe and beyond. Always in-between, at the interfaces of business, IT, artificial intelligence and design he describes himself as a for-, side- and backward thinker. The time left is filled with lightning talks, guest lectures, program committee chairs and craft brewing. Klaas is a certified scrum master, design thinker, mediator and coach and will never stop being curious.\n\nRoman Lipski, a renowned painter from Berlin, gets inspired by his Artificial Muse, the first of its kind in the world of art. It is a new kind of symbiosis between man and machine, a dialogue that evolved over the last two years creating not just a new kind of art but step by step a new kind of artist. It is not Creative AI (as some call it), it is Inspirational AI (as we call it) and time to re-create and re-think the connections of human and artificial intelligence for the future. Not just in the arts, but everywhere. What if we could build an Artificial Muse for everyone? For our enterprises? What if we could redefine how we collaborate, communicate and co-create with intelligent services and devices? What if we could learn from and inspire each other? How about harmony instead of disruption and destruction? We took the first steps to find answers, started building an Artificial Enterprise Muse and now want to show and share our first findings.",
     "organizer": "Futurice",
     "contactDetails": "Klaas Bollhoefer",
     "location": {
@@ -57,13 +61,13 @@
     },
     "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/keynote.jpg",
     "speakers":
-      "[{\"name\": \"Klaas Bollhoefer\", \"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--klaas.jpg\"}]"
+      "[{\"name\": \"Klaas Bollhoefer\", \"title\": \"Managing director of Birds on Mars GbmH\", \"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--klaas.jpg\"}]"
   },
   {
     "name": "Break",
     "locationName": "Small Hall - WECC",
-    "startTime": "2017-06-08T15:45:00.000",
-    "endTime": "2017-06-08T16:20:00.000",
+    "startTime": "2018-06-08T15:45:00.000",
+    "endTime": "2018-06-08T16:20:00.000",
     "description": "Food & Drinks in Small Hall.\n\n16:00 Supecell-case (10 min) by Claes Kaarni",
     "organizer": "Futurice",
     "contactDetails": "Claes Kaarni",
@@ -72,5 +76,22 @@
       "longitude": "13.3355483"
     },
     "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/break.jpg"
+  },
+  {
+    "name": "Keynote - Duman & Sauvolainen",
+    "locationName": "Big Hall - WECC",
+    "startTime": "2018-06-08T16:20:00.000",
+    "endTime": "2018-06-08T16:45:00.000",
+    "description":
+      "Innovating with AI: Expectations of creative agencies versus the realities of corporations\n\nWhen it comes to innovation, everything these two organizations do are inherently different. Creative agencies are able to take the leap almost immediately whereas in corporations do take their time and sometimes even in the expense of losing the opportunity. Ability to innovate at speed is important, but what if the organization is not set up for it?  Should creative agencies pay more attention to understanding their customers' organizations first, rather than feeding them with new ideas?  These two organizations need each other desperately for survival, but there is an obivous gap between the speed and the ways they are handling innovation. In this talk we are going to investigate the reasons for the gap, followed by a discussion on the solutions with the fireside panel.",
+    "organizer": "Futurice",
+    "contactDetails": "Tuğberk & Sauvolainen",
+    "location": {
+      "latitude": "52.536582",
+      "longitude": "13.3355483"
+    },
+    "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/keynote.jpg",
+    "speakers":
+      "[{\"name\": \"Tuğberk Duman\", \"title\": \"Biometrics Expert, Leads Innovation at Futurice\", \"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--tugberk.jpg\"}, {\"name\": \"Niina Sauvolainen\", \"title\": \"Digital Transformation Lead at Finnair\", \"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--niina.jpg\"}]"
   }
 ]
