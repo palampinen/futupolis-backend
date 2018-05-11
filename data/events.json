@@ -212,6 +212,10 @@
     "description": "More info later",
     "organizer": "Futurice",
     "contactDetails": "Maiju",
+    "location": {
+      "latitude": "52.536582",
+      "longitude": "13.3355483"
+    },
     "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/breakfast.jpg"
   },
   {
@@ -222,6 +226,10 @@
     "description": "Enjoy little sports activity before evening party.",
     "organizer": "Futurice",
     "contactDetails": "HP Heinajarvi",
+    "location": {
+      "latitude": "52.536582",
+      "longitude": "13.3355483"
+    },
     "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/football.jpg"
   },
   {
@@ -233,6 +241,7 @@
       "Address:\nKöpenickerstr. 16-17\n10997 Berlin\n\nBuffet open - sparking wine served",
     "organizer": "Futurice",
     "contactDetails": "Maiju",
+    "location": { "latitude": "52.5058932", "longitude": "13.4325134" },
     "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/bileet.jpg"
   }
 ]
