@@ -59,7 +59,7 @@
       "latitude": "52.536582",
       "longitude": "13.3355483"
     },
-    "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/keynote.jpg",
+    "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/speaker--klaas.jpg",
     "speakers":
       "[{\"name\": \"Klaas Bollhoefer\", \"title\": \"Managing director of Birds on Mars GbmH\", \"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--klaas.jpg\"}]"
   },
@@ -137,7 +137,7 @@
       "latitude": "52.536582",
       "longitude": "13.3355483"
     },
-    "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/keynote.jpg",
+    "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/speaker--zeynep.jpg",
     "speakers":
       "[{\"name\": \"Zeynep Tufekci\", \"title\": \"Techno-sociologist, professor, writer\", \"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--zeynep.jpg\"}]"
   },
@@ -243,5 +243,33 @@
     "contactDetails": "Maiju",
     "location": { "latitude": "52.5058932", "longitude": "13.4325134" },
     "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/bileet.jpg"
+  },
+  {
+    "name": "Keep the Jack",
+    "locationName": "Spindler & Klatt GmbH",
+    "startTime": "2018-06-09T19:00:00.000",
+    "endTime": "2018-06-09T19:15:00.000",
+    "description":
+      "We have a saying in Finland, \"Pitäkää tunkkinne\", translated freely to \"Keep your jack\" which according to Finnish urban dictionary means \"A frustrated phrase or pessimistic thinking when things don't go as planned\".\n\nThis is an award for person/team/tribe/site who have gone through hardships in their projects or any other work related thing, doing unpleasant customer related things and maybe even crawled through actual shit to keep things running smoothly. \n\nThis is an award to recognize these people and their work.",
+    "organizer": "Futurice",
+    "contactDetails": "Kaitsu",
+    "location": { "latitude": "52.5058932", "longitude": "13.4325134" },
+    "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/tunkki.jpg",
+    "speakers":
+      "[{\"name\": \"Kai-Mikael Alanne\", \"title\": \"Software Developer\", \"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--kaitsu.jpg\"}]"
+  },
+  {
+    "name": "Modern Alchemy",
+    "locationName": "Spindler & Klatt GmbH",
+    "startTime": "2018-06-09T19:15:00.000",
+    "endTime": "2018-06-09T19:30:00.000",
+    "description":
+      "Modern Alchemy is a an award to person from Futurice who has seen some shit and delivered diamonds from exceptionally challenging project situation.",
+    "organizer": "Futurice",
+    "contactDetails": "Kauppila & Kari-Koskinen",
+    "location": { "latitude": "52.5058932", "longitude": "13.4325134" },
+    "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/band.jpg",
+    "speakers":
+      "[{\"name\": \"Markus Kauppila\", \"title\": \"Software Developer\", \"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--markus.jpg\"},{\"name\": \"Yrjö Kari-Koskinen\", \"title\": \"Senior Consultant\", \"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--yka.jpg\"}]"
   }
 ]
