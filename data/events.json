@@ -59,7 +59,7 @@
       "latitude": "52.536582",
       "longitude": "13.3355483"
     },
-    "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/speaker--klaas.jpg",
+    "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/speaker-klaas.jpg",
     "speakers":
       "[{\"name\": \"Klaas Bollhoefer\", \"title\": \"Managing director of Birds on Mars GbmH\", \"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--klaas.jpg\"}]"
   },
@@ -137,7 +137,7 @@
       "latitude": "52.536582",
       "longitude": "13.3355483"
     },
-    "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/speaker--zeynep.jpg",
+    "coverImage": "https://storage.googleapis.com/wappuapp/futupolis/speaker-zeynep.jpg",
     "speakers":
       "[{\"name\": \"Zeynep Tufekci\", \"title\": \"Techno-sociologist, professor, writer\", \"image\": \"https://storage.googleapis.com/wappuapp/futupolis/avatar--zeynep.jpg\"}]"
   },
