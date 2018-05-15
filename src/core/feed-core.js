@@ -319,7 +319,7 @@ function _actionToFeedObject(row, client) {
       name: row['user_name'],
       team: row['team_name'],
       type: _resolveAuthorType(row['user_id'], client),
-      profilePicture: row['profile_picture_url'],
+      profilePicture: pathToUrl(row['profile_picture_url']),
     },
     createdAt: row['created_at'],
     commentCount: row['comment_count'],

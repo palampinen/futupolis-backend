@@ -130,7 +130,7 @@ function _queryUserDetails(userId) {
       name: rowObj['name'],
       team: rowObj['team'],
       numSimas: rowObj['num_simas'],
-      profilePicture: rowObj['profile_picture_url'],
+      profilePicture: pathToUrl(rowObj['profile_picture_url']),
     };
   });
 }
@@ -156,7 +156,7 @@ function _userRowToObject(row) {
     info: row.info,
     team: row.team_id,
     isBanned: row.is_banned,
-    profilePicture: row.profile_picture_url,
+    profilePicture: pathToUrl(row.profile_picture_url),
   };
 }
 
