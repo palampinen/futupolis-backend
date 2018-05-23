@@ -2,17 +2,25 @@
   {
     "title": "FUTURICE Summer party",
     "location": { "latitude": "52.5058932", "longitude": "13.4325134" },
-    "type": "SUMMER PARTY",
+    "type": "SUMMER",
     "image_url":
-      "https://spindlerklatt.com/wp-content/uploads/2017/03/2016_08_SpindlerKlatt_0507-1500x1000.jpg",
+      "https://futurice.github.io/futupolis-web/app/spindlerklatt.jpg",
     "subtitle": "Robot-Themed Summer Party \nKöpenickerstr. 16-17 \n10997 Berlin"
   },
   {
     "title": "FUTURICE AI-event",
     "location": { "latitude": "52.5365852", "longitude": "13.3355483" },
     "type": "FUTUCAMP",
-    "image_url": "https://pbs.twimg.com/media/CDb6YC1WMAIUyPb.jpg",
+    "image_url": "https://futurice.github.io/futupolis-web/app/wecc.jpg",
     "subtitle":
       "Day event in Westhafen Event & Convention Center \nSektor B, Halle 1, Westhafenstr. 1 \n13353 Berlin"
+  },
+  {
+    "title": "Hotel Park Inn",
+    "location": { "latitude": "52.522804", "longitude": "13.4107004" },
+    "type": "HOME",
+    "image_url": "https://futurice.github.io/futupolis-web/app/parkinn.jpg",
+    "subtitle":
+      "Park Inn Berlin Alexanderpl. 7\n10178 Berlin"
   }
 ]
