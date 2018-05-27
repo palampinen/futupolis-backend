@@ -383,6 +383,10 @@ function _getWhereSql(opts) {
     params.push(opts.since);
   }
 
+  if (opts.locationRequired) {
+    whereClauses.push('feed_items.location IS NOT NULL');
+  }
+
   return whereClauses.length > 0
     ? knex.raw(` WHERE ${whereClauses.join(' AND ')}`, params).toString()
     : '';

@@ -81,6 +81,7 @@ const schemas = {
       .valid(CONST.FEED_SORT_TYPES_ARRAY)
       .default(CONST.FEED_SORT_TYPES.NEW)
       .optional(),
+    locationRequired: Joi.boolean().optional(),
   },
 
   imageParams: {
