@@ -1,26 +1,26 @@
 [
   {
-    "title": "FUTURICE Summer party",
+    "title": "Spindler & Klatt",
     "location": { "latitude": "52.5058932", "longitude": "13.4325134" },
     "type": "SUMMER",
     "image_url":
       "https://futurice.github.io/futupolis-web/app/spindlerklatt.jpg",
-    "subtitle": "Robot-Themed Summer Party \nKöpenickerstr. 16-17 \n10997 Berlin"
+    "subtitle": "Saturday Summer Party\n\nKöpenickerstr. 16-17\n10997 Berlin\n\nhttps://spindlerklatt.com/en/startpage/"
   },
   {
-    "title": "FUTURICE AI-event",
+    "title": "WECC",
     "location": { "latitude": "52.5365852", "longitude": "13.3355483" },
     "type": "FUTUCAMP",
     "image_url": "https://futurice.github.io/futupolis-web/app/wecc.jpg",
     "subtitle":
-      "Day event in Westhafen Event & Convention Center \nSektor B, Halle 1, Westhafenstr. 1 \n13353 Berlin"
+      "Day event in Westhafen Event & Convention Center\nSektor B, Halle 1\nWesthafenstr. 1\n13353 Berlin\n\nhttp://wecc.de/en/"
   },
   {
-    "title": "Hotel Park Inn",
+    "title": "Park Inn Berlin",
     "location": { "latitude": "52.522804", "longitude": "13.4107004" },
     "type": "HOME",
     "image_url": "https://futurice.github.io/futupolis-web/app/parkinn.jpg",
     "subtitle":
-      "Park Inn Berlin Alexanderpl. 7\n10178 Berlin"
+      "Alexanderpl. 7\n10178 Berlin\nGermany\n\nhttps://www.parkinn-berlin.de/en/"
   }
 ]
